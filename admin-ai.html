@@ -1,0 +1,523 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI 配置 — AI 健康管理系统</title>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body data-page-id="admin-ai">
+    <a class="skip-link" href="#main-content">跳转到主要内容</a>
+    <div class="app-layout">
+      <aside class="sidebar admin-sidebar">
+        <div class="sidebar-brand">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span>管理后台</span>
+        </div>
+        <nav>
+          <ul class="sidebar-nav">
+            <li class="admin-nav-section">概览</li>
+            <li><a href="./admin.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>仪表盘</a></li>
+            <li class="admin-divider"></li>
+            <li class="admin-nav-section">业务管理</li>
+            <li><a href="./admin-users.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>用户管理</a></li>
+            <li><a href="./health-data.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>健康数据</a></li>
+            <li class="admin-divider"></li>
+            <li class="admin-nav-section">AI 服务</li>
+            <li><a href="./admin-ai.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/><path d="M16 2h6v6"/></svg>AI 配置</a></li>
+            <li><a href="#logs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>调用日志</a></li>
+            <li class="admin-divider"></li>
+            <li class="admin-nav-section">前台</li>
+            <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>返回前台</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="main-wrapper">
+        <header class="top-header">
+          <div class="header-left">
+            <h1>AI 服务配置</h1>
+          </div>
+          <div class="header-right">
+            <span class="badge badge-green"><span class="status-dot online" style="margin-right:0.3rem;"></span>DeepSeek 在线</span>
+          </div>
+        </header>
+
+        <main id="main-content" class="content-area" tabindex="-1">
+          <!-- AI Feature Map -->
+          <section class="card" style="margin-bottom:2rem;background:linear-gradient(135deg,#ECFDF5,#E0F2FE);border-color:transparent;">
+            <div class="card-body">
+              <h3 style="font-size:1rem;font-weight:600;margin-bottom:1rem;">🧠 AI 功能调用全景</h3>
+              <p style="font-size:0.85rem;color:var(--color-muted-text);margin-bottom:1.25rem;">以下功能模块正在调用 DeepSeek 大模型进行智能分析：</p>
+              <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;">
+                <div style="background:rgba(255,255,255,0.8);padding:1rem;border-radius:var(--radius-md);">
+                  <div style="font-size:0.85rem;font-weight:600;margin-bottom:0.375rem;">💬 AI 健康助手</div>
+                  <div style="font-size:0.78rem;color:var(--color-muted-text);">仪表盘实时健康提示、日常健康问答</div>
+                  <div style="margin-top:0.5rem;"><span class="badge badge-green">前台 → index.html</span></div>
+                </div>
+                <div style="background:rgba(255,255,255,0.8);padding:1rem;border-radius:var(--radius-md);">
+                  <div style="font-size:0.85rem;font-weight:600;margin-bottom:0.375rem;">📊 智能健康分析</div>
+                  <div style="font-size:0.78rem;color:var(--color-muted-text);">综合报告、疾病风险评估、趋势洞察</div>
+                  <div style="margin-top:0.5rem;"><span class="badge badge-blue">前台 → ai-analysis.html</span></div>
+                </div>
+                <div style="background:rgba(255,255,255,0.8);padding:1rem;border-radius:var(--radius-md);">
+                  <div style="font-size:0.85rem;font-weight:600;margin-bottom:0.375rem;">📋 个性化建议</div>
+                  <div style="font-size:0.78rem;color:var(--color-muted-text);">运动/饮食/睡眠/心理四个维度的定制建议</div>
+                  <div style="margin-top:0.5rem;"><span class="badge badge-amber">前台 → ai-analysis.html</span></div>
+                </div>
+                <div style="background:rgba(255,255,255,0.8);padding:1rem;border-radius:var(--radius-md);">
+                  <div style="font-size:0.85rem;font-weight:600;margin-bottom:0.375rem;">📝 月度健康总结</div>
+                  <div style="font-size:0.78rem;color:var(--color-muted-text);">AI 自动生成月度健康趋势总结</div>
+                  <div style="margin-top:0.5rem;"><span class="badge badge-green">前台 → health-report.html</span></div>
+                </div>
+                <div style="background:rgba(255,255,255,0.8);padding:1rem;border-radius:var(--radius-md);">
+                  <div style="font-size:0.85rem;font-weight:600;margin-bottom:0.375rem;">🎯 智能计划生成</div>
+                  <div style="font-size:0.78rem;color:var(--color-muted-text);">根据用户数据自动生成健康计划</div>
+                  <div style="margin-top:0.5rem;"><span class="badge badge-blue">前台 → health-plan.html</span></div>
+                </div>
+                <div style="background:rgba(255,255,255,0.8);padding:1rem;border-radius:var(--radius-md);">
+                  <div style="font-size:0.85rem;font-weight:600;margin-bottom:0.375rem;">⚠️ 异常预警</div>
+                  <div style="font-size:0.78rem;color:var(--color-muted-text);">健康数据异常时触发 AI 预警通知</div>
+                  <div style="margin-top:0.5rem;"><span class="badge badge-red">后台自动触发</span></div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Model Configuration -->
+          <section class="grid-2" style="margin-bottom:2rem;">
+            <div class="card">
+              <div class="card-header">
+                <h3>模型配置</h3>
+              </div>
+              <div class="card-body">
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1.5rem;">
+                  <div class="model-card selected" onclick="selectModel(this)">
+                    <h4>DeepSeek-V3</h4>
+                    <p>通用对话 · 671B · 性价比高</p>
+                    <div style="margin-top:0.5rem;font-size:0.72rem;color:var(--color-primary);">✓ 当前使用</div>
+                  </div>
+                  <div class="model-card" onclick="selectModel(this)">
+                    <h4>DeepSeek-R1</h4>
+                    <p>深度推理 · 复杂分析 · 较慢</p>
+                    <div style="margin-top:0.5rem;font-size:0.72rem;color:var(--color-muted-text);">点击切换</div>
+                  </div>
+                </div>
+
+                <div class="config-group">
+                  <div class="config-row">
+                    <div class="config-info">
+                      <h4>API Endpoint</h4>
+                      <p>DeepSeek 官方 API 地址</p>
+                    </div>
+                    <div class="inline-edit">
+                      <input type="text" value="https://api.deepseek.com" readonly style="width:200px;" />
+                    </div>
+                  </div>
+                  <div class="config-row">
+                    <div class="config-info">
+                      <h4>API Key</h4>
+                      <p>管理后台密钥（示例）</p>
+                    </div>
+                    <div class="inline-edit">
+                      <input type="password" value="sk-xxxxxxxxxxxx" style="width:160px;" />
+                      <button class="btn btn-secondary" style="padding:0.3rem 0.5rem;font-size:0.72rem;">更新</button>
+                    </div>
+                  </div>
+                  <div class="config-row">
+                    <div class="config-info">
+                      <h4>Temperature</h4>
+                      <p>控制输出随机性（0-2）</p>
+                    </div>
+                    <div class="inline-edit">
+                      <input type="number" value="0.7" step="0.1" min="0" max="2" style="width:80px;" />
+                    </div>
+                  </div>
+                  <div class="config-row">
+                    <div class="config-info">
+                      <h4>Max Tokens</h4>
+                      <p>单次最大输出长度</p>
+                    </div>
+                    <div class="inline-edit">
+                      <input type="number" value="2048" style="width:80px;" />
+                      <span class="unit">tokens</span>
+                    </div>
+                  </div>
+                  <div class="config-row">
+                    <div class="config-info">
+                      <h4>每日调用限额</h4>
+                      <p>防止异常调用</p>
+                    </div>
+                    <div class="inline-edit">
+                      <input type="number" value="10000" style="width:80px;" />
+                      <span class="unit">次/天</span>
+                    </div>
+                  </div>
+                  <div class="config-row">
+                    <div class="config-info">
+                      <h4>流式输出</h4>
+                      <p>启用 SSE 流式响应</p>
+                    </div>
+                    <label class="toggle-switch">
+                      <input type="checkbox" checked />
+                      <span class="toggle-slider"></span>
+                    </label>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3>Prompt 模板</h3>
+                <button class="btn btn-secondary" style="padding:0.3rem 0.8rem;font-size:0.75rem;">编辑</button>
+              </div>
+              <div class="card-body">
+                <div style="margin-bottom:1rem;">
+                  <div style="font-size:0.8rem;font-weight:600;margin-bottom:0.5rem;">🏥 健康分析 System Prompt</div>
+                  <div class="prompt-template"><span class="keyword">你是一个专业的AI健康管理助手。</span>
+
+请根据以下用户健康数据进行综合分析：
+
+用户健康数据: <span class="placeholder">[用户健康数据]</span>
+
+用户基本信息：<span class="placeholder">[年龄]岁，[性别]，BMI [BMI值]</span>
+
+请从以下维度分析：
+1. 整体健康评分（0-100）
+2. 各维度评分（运动/饮食/睡眠/心理）
+3. 潜在健康风险提示
+4. 个性化改善建议
+
+<span class="keyword">要求：用通俗易懂的语言，给出具体可执行的建议。</span></div>
+                </div>
+                <div>
+                  <div style="font-size:0.8rem;font-weight:600;margin-bottom:0.5rem;">💬 健康问答 System Prompt</div>
+                  <div class="prompt-template"><span class="keyword">你是一个友好专业的健康顾问。</span>
+
+回答用户的健康相关问题时：
+- 基于科学证据给出建议
+- 不替代医生诊断，必要时建议就医
+- 参考用户历史数据：<span class="placeholder">[健康档案]</span>
+- 回答简洁实用，不超过 200 字</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Live AI Chat Demo -->
+          <section class="card" style="margin-bottom:2rem;">
+            <div class="card-header">
+              <h3>🧪 AI 在线测试（接入 DeepSeek）</h3>
+              <div style="display:flex;align-items:center;gap:0.75rem;">
+                <label style="font-size:0.8rem;color:var(--color-muted-text);">API Key:</label>
+                <input type="password" id="ds-api-key" placeholder="输入你的 DeepSeek API Key" style="padding:0.3rem 0.75rem;border:1px solid var(--color-border);border-radius:var(--radius-sm);font-size:0.8rem;width:240px;" />
+                <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.72rem;" onclick="testConnection()">测试连接</button>
+                <span id="conn-status" style="font-size:0.75rem;"></span>
+              </div>
+            </div>
+            <div class="card-body" style="padding:0;">
+              <div class="chat-container" style="border:none;border-radius:0;">
+                <div class="chat-header">
+                  <div style="width:32px;height:32px;border-radius:8px;background:linear-gradient(135deg,#10B981,#0EA5E9);display:flex;align-items:center;justify-content:center;">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width:18px;height:18px;"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/></svg>
+                  </div>
+                  <div>
+                    <h3>DeepSeek 健康助手</h3>
+                    <div style="font-size:0.72rem;color:#94A3B8;">模型: deepseek-chat · 在线</div>
+                  </div>
+                  <button style="margin-left:auto;background:rgba(255,255,255,0.1);border:none;color:#94A3B8;padding:0.3rem 0.6rem;border-radius:var(--radius-sm);font-size:0.72rem;cursor:pointer;" onclick="clearChat()">清空对话</button>
+                </div>
+                <div class="chat-messages" id="chat-messages">
+                  <div class="chat-msg ai">
+                    <div class="chat-msg-avatar">AI</div>
+                    <div class="chat-msg-bubble">你好！我是 AI 健康助手，基于 DeepSeek 大模型。你可以问我任何健康问题，比如：<br><br>• "帮我分析我的健康数据"<br>• "最近总是失眠怎么办？"<br>• "我的血压120/80正常吗？"<br>• "制定一个减脂计划"</div>
+                  </div>
+                </div>
+                <div class="chat-input-area">
+                  <input type="text" id="chat-input" placeholder="输入健康问题…（Enter 发送）" onkeypress="if(event.key==='Enter')sendMessage()" />
+                  <button id="send-btn" onclick="sendMessage()">发送</button>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- API Call Logs -->
+          <section class="card" id="logs">
+            <div class="card-header">
+              <h3>AI 调用日志</h3>
+              <div class="tab-group">
+                <button class="tab-btn active">全部</button>
+                <button class="tab-btn">健康分析</button>
+                <button class="tab-btn">问答</button>
+                <button class="tab-btn">异常</button>
+              </div>
+            </div>
+            <div style="overflow-x:auto;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>时间</th>
+                    <th>用户</th>
+                    <th>功能</th>
+                    <th>模型</th>
+                    <th>Tokens</th>
+                    <th>耗时</th>
+                    <th>状态</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-size:0.8rem;font-family:monospace;">14:32:15</td>
+                    <td>李明远</td>
+                    <td><span class="badge badge-blue">健康问答</span></td>
+                    <td>deepseek-chat</td>
+                    <td>328 / 512</td>
+                    <td>1.2s</td>
+                    <td><span class="badge badge-green">成功</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:0.8rem;font-family:monospace;">14:28:03</td>
+                    <td>王思涵</td>
+                    <td><span class="badge badge-green">健康分析</span></td>
+                    <td>deepseek-chat</td>
+                    <td>1,245 / 2,048</td>
+                    <td>3.8s</td>
+                    <td><span class="badge badge-green">成功</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:0.8rem;font-family:monospace;">14:15:47</td>
+                    <td>张雨婷</td>
+                    <td><span class="badge badge-amber">计划生成</span></td>
+                    <td>deepseek-chat</td>
+                    <td>856 / 1,536</td>
+                    <td>2.1s</td>
+                    <td><span class="badge badge-green">成功</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:0.8rem;font-family:monospace;">13:52:31</td>
+                    <td>陈浩然</td>
+                    <td><span class="badge badge-blue">健康问答</span></td>
+                    <td>deepseek-chat</td>
+                    <td>215 / 480</td>
+                    <td>4.2s</td>
+                    <td><span class="badge badge-amber">慢响应</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:0.8rem;font-family:monospace;">13:30:12</td>
+                    <td>系统</td>
+                    <td><span class="badge badge-red">异常预警</span></td>
+                    <td>deepseek-chat</td>
+                    <td>534 / 1,024</td>
+                    <td>1.5s</td>
+                    <td><span class="badge badge-green">成功</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:0.8rem;font-family:monospace;">12:45:08</td>
+                    <td>赵子轩</td>
+                    <td><span class="badge badge-green">月度总结</span></td>
+                    <td>deepseek-chat</td>
+                    <td>2,103 / 3,072</td>
+                    <td>5.2s</td>
+                    <td><span class="badge badge-green">成功</span></td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:0.8rem;font-family:monospace;">11:20:55</td>
+                    <td>刘佳怡</td>
+                    <td><span class="badge badge-blue">健康问答</span></td>
+                    <td>deepseek-chat</td>
+                    <td>0 / 0</td>
+                    <td>30.0s</td>
+                    <td><span class="badge badge-red">超时</span></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <nav class="bottom-nav">
+      <ul class="bottom-nav-list">
+        <li><a href="./admin.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>仪表盘</a></li>
+        <li><a href="./admin-users.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>用户</a></li>
+        <li><a href="./admin-ai.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/></svg>AI</a></li>
+        <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>前台</a></li>
+      </ul>
+    </nav>
+
+    <script>
+    // DeepSeek API Integration
+    const chatMessages = document.getElementById('chat-messages');
+    const chatInput = document.getElementById('chat-input');
+    const sendBtn = document.getElementById('send-btn');
+    const connStatus = document.getElementById('conn-status');
+    let conversationHistory = [
+      {
+        role: 'system',
+        content: '你是一个专业的AI健康管理助手。请根据用户的健康问题，基于科学证据给出专业、实用、通俗易懂的建议。不替代医生诊断，必要时建议就医。回答简洁实用。'
+      }
+    ];
+
+    function selectModel(el) {
+      document.querySelectorAll('.model-card').forEach(c => {
+        c.classList.remove('selected');
+        c.querySelector('div:last-child').style.color = 'var(--color-muted-text)';
+        c.querySelector('div:last-child').textContent = '点击切换';
+      });
+      el.classList.add('selected');
+      el.querySelector('div:last-child').style.color = 'var(--color-primary)';
+      el.querySelector('div:last-child').textContent = '✓ 当前使用';
+    }
+
+    async function testConnection() {
+      const apiKey = document.getElementById('ds-api-key').value.trim();
+      if (!apiKey) {
+        connStatus.textContent = '⚠️ 请输入 API Key';
+        connStatus.style.color = 'var(--color-warning)';
+        return;
+      }
+      connStatus.textContent = '测试中…';
+      connStatus.style.color = 'var(--color-accent)';
+      try {
+        const resp = await fetch('https://api.deepseek.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + apiKey
+          },
+          body: JSON.stringify({
+            model: 'deepseek-chat',
+            messages: [{ role: 'user', content: '你好' }],
+            max_tokens: 20
+          })
+        });
+        if (resp.ok) {
+          connStatus.textContent = '✅ 连接成功';
+          connStatus.style.color = 'var(--color-primary)';
+        } else {
+          const err = await resp.json();
+          connStatus.textContent = '❌ ' + (err.error?.message || resp.status);
+          connStatus.style.color = 'var(--color-danger)';
+        }
+      } catch (e) {
+        connStatus.textContent = '❌ 网络错误';
+        connStatus.style.color = 'var(--color-danger)';
+      }
+    }
+
+    function addMessage(role, content) {
+      const div = document.createElement('div');
+      div.className = 'chat-msg ' + role;
+      const avatar = role === 'ai' ? 'AI' : '我';
+      div.innerHTML = '<div class="chat-msg-avatar">' + avatar + '</div><div class="chat-msg-bubble">' + content.replace(/\n/g, '<br>') + '</div>';
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+      return div;
+    }
+
+    function addTyping() {
+      const div = document.createElement('div');
+      div.className = 'chat-msg ai';
+      div.id = 'typing-msg';
+      div.innerHTML = '<div class="chat-msg-avatar">AI</div><div class="chat-msg-bubble"><div class="typing-indicator"><span></span><span></span><span></span></div></div>';
+      chatMessages.appendChild(div);
+      chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function removeTyping() {
+      const el = document.getElementById('typing-msg');
+      if (el) el.remove();
+    }
+
+    async function sendMessage() {
+      const text = chatInput.value.trim();
+      if (!text) return;
+      const apiKey = document.getElementById('ds-api-key').value.trim();
+      if (!apiKey) {
+        addMessage('ai', '⚠️ 请先在上方输入你的 DeepSeek API Key 才能使用 AI 对话。\n\n获取地址：https://platform.deepseek.com/api_keys');
+        return;
+      }
+
+      addMessage('user', text);
+      chatInput.value = '';
+      sendBtn.disabled = true;
+      addTyping();
+
+      conversationHistory.push({ role: 'user', content: text });
+
+      try {
+        const resp = await fetch('https://api.deepseek.com/v1/chat/completions', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+            'Authorization': 'Bearer ' + apiKey
+          },
+          body: JSON.stringify({
+            model: 'deepseek-chat',
+            messages: conversationHistory,
+            temperature: 0.7,
+            max_tokens: 2048,
+            stream: true
+          })
+        });
+
+        if (!resp.ok) {
+          const err = await resp.json();
+          removeTyping();
+          addMessage('ai', '❌ API 错误: ' + (err.error?.message || resp.status));
+          sendBtn.disabled = false;
+          return;
+        }
+
+        removeTyping();
+        const aiDiv = addMessage('ai', '');
+        const bubble = aiDiv.querySelector('.chat-msg-bubble');
+        let fullText = '';
+
+        const reader = resp.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop() || '';
+
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              const data = line.slice(6).trim();
+              if (data === '[DONE]') continue;
+              try {
+                const json = JSON.parse(data);
+                const delta = json.choices?.[0]?.delta?.content || '';
+                if (delta) {
+                  fullText += delta;
+                  bubble.innerHTML = fullText.replace(/\n/g, '<br>');
+                  chatMessages.scrollTop = chatMessages.scrollHeight;
+                }
+              } catch (e) {}
+            }
+          }
+        }
+
+        conversationHistory.push({ role: 'assistant', content: fullText });
+      } catch (e) {
+        removeTyping();
+        addMessage('ai', '❌ 请求失败: ' + e.message);
+      }
+      sendBtn.disabled = false;
+      chatInput.focus();
+    }
+
+    function clearChat() {
+      chatMessages.innerHTML = '';
+      conversationHistory = [conversationHistory[0]];
+      addMessage('ai', '对话已清空，可以开始新的健康咨询。');
+    }
+    </script>
+  </body>
+</html>
