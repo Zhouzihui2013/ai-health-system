@@ -299,7 +299,25 @@
       </ul>
     </nav>
 
+    <script src="./data-store.js"></script>
     <script src="./app.js"></script>
+    <script>
+    // Load saved API key
+    (function() {
+      var savedKey = DataStore.getApiKey();
+      if (savedKey) {
+        document.getElementById('checkup-api-key').value = savedKey;
+        var s = document.getElementById('checkup-conn-status');
+        s.textContent = '✅ 已配置'; s.style.color = 'var(--color-primary)';
+      }
+    })();
+    var origTest2 = window.testCheckupConn;
+    window.testCheckupConn = function() {
+      var key = document.getElementById('checkup-api-key').value.trim();
+      if (key) DataStore.setApiKey(key);
+      if (origTest2) origTest2();
+    };
+    </script>
     <script>
     // BMI auto-calc
     const hInput = document.getElementById('ck-height');
