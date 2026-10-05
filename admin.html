@@ -189,13 +189,13 @@
                 <div style="font-size:0.9rem;font-weight:600;">数据管理</div>
                 <div style="font-size:0.78rem;color:var(--color-muted-text);margin-top:0.25rem;">健康数据导入导出</div>
               </a>
-              <a href="./admin.html" class="card card-interactive" style="padding:1.25rem;text-decoration:none;color:inherit;" onclick="alert('系统设置页面开发中');return false;">
+              <div class="card card-interactive" style="padding:1.25rem;cursor:pointer;" onclick="openSettings()">
                 <div class="stat-icon red" style="margin-bottom:0.75rem;">
                   <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06A1.65 1.65 0 0 0 9 4.68 1.65 1.65 0 0 0 10 3.17V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
                 </div>
                 <div style="font-size:0.9rem;font-weight:600;">系统设置</div>
                 <div style="font-size:0.78rem;color:var(--color-muted-text);margin-top:0.25rem;">通知、权限、日志级别</div>
-              </a>
+              </div>
             </div>
           </section>
         </main>
@@ -210,6 +210,81 @@
         <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>前台</a></li>
       </ul>
     </nav>
+  <script src="./data-store.js"></script>
   <script src="./app.js"></script>
+  <!-- System Settings Modal -->
+  <div id="settings-modal" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,0.5);z-index:2000;align-items:center;justify-content:center;">
+    <div style="background:white;border-radius:16px;padding:2rem;max-width:520px;width:90%;max-height:85vh;overflow-y:auto;">
+      <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+        <h2 style="font-size:1.25rem;font-weight:700;">系统设置</h2>
+        <button onclick="closeSettings()" class="btn btn-secondary" style="padding:0.35rem 0.75rem;">关闭</button>
+      </div>
+      <div style="display:flex;flex-direction:column;gap:1.25rem;">
+        <div>
+          <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:0.5rem;">系统通知</label>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;">
+            <label style="display:flex;align-items:center;gap:0.75rem;cursor:pointer;"><input type="checkbox" id="set-notify-health" checked onchange="saveSetting('notify_health',this.checked)"> 健康异常预警通知</label>
+            <label style="display:flex;align-items:center;gap:0.75rem;cursor:pointer;"><input type="checkbox" id="set-notify-system" checked onchange="saveSetting('notify_system',this.checked)"> 系统状态通知</label>
+            <label style="display:flex;align-items:center;gap:0.75rem;cursor:pointer;"><input type="checkbox" id="set-notify-user" checked onchange="saveSetting('notify_user',this.checked)"> 用户行为通知</label>
+          </div>
+        </div>
+        <hr style="border:none;border-top:1px solid var(--color-divider);">
+        <div>
+          <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:0.5rem;">日志级别</label>
+          <select id="set-log-level" onchange="saveSetting('log_level',this.value)" style="width:100%;padding:0.5rem;border:1px solid var(--color-input-border);border-radius:8px;font-size:0.85rem;">
+            <option value="info">INFO — 常规日志</option>
+            <option value="warn">WARN — 仅警告及以上</option>
+            <option value="error">ERROR — 仅错误</option>
+            <option value="debug">DEBUG — 全部（含调试）</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:0.5rem;">数据保留期限</label>
+          <select id="set-data-retention" onchange="saveSetting('data_retention',this.value)" style="width:100%;padding:0.5rem;border:1px solid var(--color-input-border);border-radius:8px;font-size:0.85rem;">
+            <option value="30">30 天</option>
+            <option value="90" selected>90 天</option>
+            <option value="180">180 天</option>
+            <option value="365">365 天</option>
+            <option value="0">永久保留</option>
+          </select>
+        </div>
+        <div>
+          <label style="font-weight:600;font-size:0.85rem;display:block;margin-bottom:0.5rem;">管理员权限</label>
+          <div style="display:flex;flex-direction:column;gap:0.75rem;">
+            <label style="display:flex;align-items:center;gap:0.75rem;cursor:pointer;"><input type="checkbox" id="set-perm-ban" checked onchange="saveSetting('perm_ban',this.checked)"> 允许封禁用户</label>
+            <label style="display:flex;align-items:center;gap:0.75rem;cursor:pointer;"><input type="checkbox" id="set-perm-export" checked onchange="saveSetting('perm_export',this.checked)"> 允许导出数据</label>
+            <label style="display:flex;align-items:center;gap:0.75rem;cursor:pointer;"><input type="checkbox" id="set-perm-config" checked onchange="saveSetting('perm_config',this.checked)"> 允许修改 AI 配置</label>
+          </div>
+        </div>
+        <div style="background:var(--color-surface-secondary);padding:0.75rem;border-radius:8px;font-size:0.8rem;color:var(--color-muted-text);">
+          设置已自动保存到本地存储。
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+  function openSettings() {
+    document.getElementById('settings-modal').style.display = 'flex';
+    // Load saved settings
+    var settings = JSON.parse(localStorage.getItem('admin_settings') || '{}');
+    if (settings.notify_health !== undefined) document.getElementById('set-notify-health').checked = settings.notify_health;
+    if (settings.notify_system !== undefined) document.getElementById('set-notify-system').checked = settings.notify_system;
+    if (settings.notify_user !== undefined) document.getElementById('set-notify-user').checked = settings.notify_user;
+    if (settings.log_level) document.getElementById('set-log-level').value = settings.log_level;
+    if (settings.data_retention) document.getElementById('set-data-retention').value = settings.data_retention;
+    if (settings.perm_ban !== undefined) document.getElementById('set-perm-ban').checked = settings.perm_ban;
+    if (settings.perm_export !== undefined) document.getElementById('set-perm-export').checked = settings.perm_export;
+    if (settings.perm_config !== undefined) document.getElementById('set-perm-config').checked = settings.perm_config;
+  }
+  function closeSettings() { document.getElementById('settings-modal').style.display = 'none'; }
+  function saveSetting(key, value) {
+    var settings = JSON.parse(localStorage.getItem('admin_settings') || '{}');
+    settings[key] = value;
+    localStorage.setItem('admin_settings', JSON.stringify(settings));
+  }
+  document.getElementById('settings-modal').addEventListener('click', function(e) {
+    if (e.target === this) closeSettings();
+  });
+  </script>
   </body>
 </html>
