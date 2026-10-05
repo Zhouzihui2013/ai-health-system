@@ -11,193 +11,69 @@
     <div class="app-layout">
       <aside class="sidebar">
         <div class="sidebar-brand">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
           <span>AI 健康管理</span>
         </div>
         <nav>
           <ul class="sidebar-nav">
-            <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>健康总览</a></li>
-            <li><a href="./health-data.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>健康数据</a></li>
-            <li><a href="./ai-analysis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/><path d="M16 2h6v6"/></svg>AI 分析</a></li>
+            <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>健康总览</a></li>
+            <li><a href="./health-data.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>健康数据</a></li>
+            <li><a href="./ai-analysis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/></svg>AI 分析</a></li>
             <li><a href="./health-checkup.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>体检解读</a></li>
             <li><a href="./proactive.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>主动健康</a></li>
-            <li><a href="./health-plan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>健康计划</a></li>
-            <li><a href="./health-report.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>健康报告</a></li>
+            <li><a href="./health-plan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>健康计划</a></li>
+            <li><a href="./health-report.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>健康报告</a></li>
           </ul>
         </nav>
       </aside>
 
       <div class="main-wrapper">
         <header class="top-header">
-          <div class="header-left">
-            <h1>健康数据</h1>
-          </div>
-          <div class="header-search">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-            <input type="search" placeholder="搜索健康数据…" />
-          </div>
+          <div class="header-left"><h1>健康数据</h1></div>
           <div class="header-right">
             <a href="./admin.html" class="btn btn-secondary" style="padding:0.3rem 0.75rem;font-size:0.75rem;">管理后台</a>
-            <button class="header-icon-btn" aria-label="通知">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
-              <span class="notification-badge"></span>
-            </button>
+            <button class="header-icon-btn" aria-label="通知"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg><span class="notification-badge"></span></button>
             <div class="user-avatar">李</div>
           </div>
         </header>
 
         <main id="main-content" class="content-area" tabindex="-1">
-          <!-- Action Bar -->
-          <section style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
-            <div class="tab-group" data-anchor-id="health-data.filter-tabs">
-              <button class="tab-btn active">全部</button>
-              <button class="tab-btn">体征</button>
-              <button class="tab-btn">运动</button>
-              <button class="tab-btn">饮食</button>
-              <button class="tab-btn">睡眠</button>
-            </div>
-            <button class="btn btn-primary" data-anchor-id="health-data.add-btn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:18px;height:18px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
-              录入数据
-            </button>
-          </section>
+          <!-- Stats -->
+          <section class="stat-grid" id="data-stats"></section>
 
-          <!-- Device Sync Cards -->
-          <section class="stat-grid" style="grid-template-columns: repeat(3, 1fr); margin-bottom: 2rem;">
-            <div class="card card-interactive" style="padding:1.25rem;">
-              <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
-                <div class="stat-icon green">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="1" y="5" width="22" height="14" rx="7"/><circle cx="16" cy="12" r="3"/></svg>
-                </div>
-                <div>
-                  <div style="font-size:0.9rem;font-weight:600;">Apple Watch</div>
-                  <div style="font-size:0.75rem;color:var(--color-muted-text);">已连接 · 实时同步</div>
-                </div>
+          <!-- Filters + Actions -->
+          <section class="card" style="margin-bottom:1.5rem;">
+            <div class="card-body" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+              <div class="tab-group" id="category-tabs">
+                <button class="tab-btn active" data-cat="全部">全部</button>
+                <button class="tab-btn" data-cat="体征">体征</button>
+                <button class="tab-btn" data-cat="运动">运动</button>
+                <button class="tab-btn" data-cat="饮食">饮食</button>
+                <button class="tab-btn" data-cat="睡眠">睡眠</button>
               </div>
-              <div class="progress-bar" style="margin-bottom:0.5rem;">
-                <div class="progress-fill green" style="width: 100%;"></div>
-              </div>
-              <div style="font-size:0.75rem;color:var(--color-muted-text);">今日已同步 24 条数据</div>
-            </div>
-            <div class="card card-interactive" style="padding:1.25rem;">
-              <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
-                <div class="stat-icon blue">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
-                </div>
-                <div>
-                  <div style="font-size:0.9rem;font-weight:600;">欧姆龙血压计</div>
-                  <div style="font-size:0.75rem;color:var(--color-muted-text);">蓝牙连接 · 手动同步</div>
-                </div>
-              </div>
-              <div class="progress-bar" style="margin-bottom:0.5rem;">
-                <div class="progress-fill blue" style="width: 65%;"></div>
-              </div>
-              <div style="font-size:0.75rem;color:var(--color-muted-text);">本周同步 3 次</div>
-            </div>
-            <div class="card card-interactive" style="padding:1.25rem;">
-              <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1rem;">
-                <div class="stat-icon amber">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
-                </div>
-                <div>
-                  <div style="font-size:0.9rem;font-weight:600;">体脂秤</div>
-                  <div style="font-size:0.75rem;color:var(--color-muted-text);">WiFi · 自动同步</div>
-                </div>
-              </div>
-              <div class="progress-bar" style="margin-bottom:0.5rem;">
-                <div class="progress-fill amber" style="width: 85%;"></div>
-              </div>
-              <div style="font-size:0.75rem;color:var(--color-muted-text);">上次同步: 今日 07:12</div>
+              <div style="flex:1;"></div>
+              <button class="btn btn-primary" id="add-data-btn" style="padding:0.4rem 0.8rem;font-size:0.8rem;">+ 录入数据</button>
+              <button class="btn btn-secondary" id="export-data-btn" style="padding:0.4rem 0.8rem;font-size:0.8rem;"> 导出 CSV</button>
             </div>
           </section>
 
           <!-- Data Table -->
           <section class="card">
             <div class="card-header">
-              <h3>数据记录</h3>
-              <div style="display:flex;gap:0.5rem;">
-                <button class="btn btn-secondary" style="padding:0.4rem 0.8rem;font-size:0.8rem;">导出</button>
-              </div>
+              <h3 id="table-title">全部数据</h3>
+              <span id="record-count" class="badge badge-blue"></span>
             </div>
             <div style="overflow-x:auto;">
-              <table class="data-table">
+              <table class="data-table" id="data-table">
                 <thead>
-                  <tr>
-                    <th>时间</th>
-                    <th>类型</th>
-                    <th>指标</th>
-                    <th>数值</th>
-                    <th>状态</th>
-                    <th>来源</th>
-                  </tr>
+                  <tr><th>序号</th><th>日期</th><th>时间</th><th>类别</th><th>指标</th><th>数值</th><th>来源</th><th>状态</th></tr>
                 </thead>
-                <tbody>
-                  <tr>
-                    <td>今天 06:45</td>
-                    <td><span class="badge badge-green">运动</span></td>
-                    <td>晨跑</td>
-                    <td>5.2 公里 · 32 分钟</td>
-                    <td><span class="badge badge-green">达标</span></td>
-                    <td>Apple Watch</td>
-                  </tr>
-                  <tr>
-                    <td>今天 07:10</td>
-                    <td><span class="badge badge-blue">体征</span></td>
-                    <td>体重</td>
-                    <td>68.5 kg</td>
-                    <td><span class="badge badge-green">正常</span></td>
-                    <td>体脂秤</td>
-                  </tr>
-                  <tr>
-                    <td>今天 08:00</td>
-                    <td><span class="badge badge-blue">体征</span></td>
-                    <td>血压</td>
-                    <td>120/78 mmHg</td>
-                    <td><span class="badge badge-green">理想</span></td>
-                    <td>欧姆龙血压计</td>
-                  </tr>
-                  <tr>
-                    <td>今天 08:15</td>
-                    <td><span class="badge badge-blue">体征</span></td>
-                    <td>空腹血糖</td>
-                    <td>5.2 mmol/L</td>
-                    <td><span class="badge badge-green">正常</span></td>
-                    <td>手动录入</td>
-                  </tr>
-                  <tr>
-                    <td>今天 12:30</td>
-                    <td><span class="badge badge-amber">饮食</span></td>
-                    <td>午餐</td>
-                    <td>650 千卡 · 蛋白质 32g</td>
-                    <td><span class="badge badge-green">均衡</span></td>
-                    <td>手动录入</td>
-                  </tr>
-                  <tr>
-                    <td>今天 13:15</td>
-                    <td><span class="badge badge-green">心理</span></td>
-                    <td>冥想</td>
-                    <td>15 分钟 · 压力指数 -18%</td>
-                    <td><span class="badge badge-green">有效</span></td>
-                    <td>Apple Watch</td>
-                  </tr>
-                  <tr>
-                    <td>昨天 22:30</td>
-                    <td><span class="badge badge-blue">睡眠</span></td>
-                    <td>睡眠分析</td>
-                    <td>7.5h · 深睡 1.2h · REM 2.1h</td>
-                    <td><span class="badge badge-amber">深睡不足</span></td>
-                    <td>Apple Watch</td>
-                  </tr>
-                  <tr>
-                    <td>昨天 18:00</td>
-                    <td><span class="badge badge-green">运动</span></td>
-                    <td>力量训练</td>
-                    <td>45 分钟 · 消耗 320 千卡</td>
-                    <td><span class="badge badge-green">达标</span></td>
-                    <td>Apple Watch</td>
-                  </tr>
-                </tbody>
+                <tbody id="data-tbody"></tbody>
               </table>
+            </div>
+            <div style="display:flex;justify-content:space-between;align-items:center;padding:1rem 0 0;flex-wrap:wrap;gap:0.5rem;">
+              <span id="page-info" style="font-size:0.8rem;color:var(--color-muted-text);"></span>
+              <div style="display:flex;gap:0.5rem;" id="pagination"></div>
             </div>
           </section>
         </main>
@@ -209,13 +85,154 @@
         <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>总览</a></li>
         <li><a href="./health-data.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>数据</a></li>
         <li><a href="./ai-analysis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/></svg>AI分析</a></li>
-        <li><a href="./health-checkup.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>体检解读</a></li>
-            <li><a href="./health-checkup.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>体检</a></li>
+        <li><a href="./health-checkup.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>体检</a></li>
+        <li><a href="./health-plan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>计划</a></li>
         <li><a href="./proactive.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>主动健康</a></li>
-            <li><a href="./health-plan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>计划</a></li>
-        <li><a href="./health-report.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>报告</a></li>
       </ul>
     </nav>
-  <script src="./app.js"></script>
+
+    <!-- Add Data Modal -->
+    <div id="add-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;justify-content:center;align-items:center;">
+      <div style="background:#fff;border-radius:16px;padding:2rem;width:90%;max-width:500px;max-height:90vh;overflow-y:auto;">
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
+          <h3 style="margin:0;">录入健康数据</h3>
+          <button id="close-modal" style="background:none;border:none;font-size:1.5rem;cursor:pointer;">✕</button>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:1rem;">
+          <div class="form-group">
+            <label class="form-label">类别</label>
+            <select class="form-input" id="add-category"><option value="体征">体征</option><option value="运动">运动</option><option value="饮食">饮食</option><option value="睡眠">睡眠</option></select>
+          </div>
+          <div class="form-group"><label class="form-label">指标名称</label><input class="form-input" id="add-type" placeholder="如：心率、步数、早餐热量…" /></div>
+          <div class="form-group"><label class="form-label">数值</label><input class="form-input" type="number" step="any" id="add-value" placeholder="如：72" /></div>
+          <div class="form-group"><label class="form-label">单位</label><input class="form-input" id="add-unit" placeholder="如：bpm、km、千卡" /></div>
+          <div class="form-group"><label class="form-label">来源</label><select class="form-input" id="add-device"><option>智能手表</option><option>智能血压计</option><option>智能体脂秤</option><option>手动录入</option></select></div>
+          <div class="form-group"><label class="form-label">日期</label><input class="form-input" type="date" id="add-date" /></div>
+          <div class="form-group"><label class="form-label">时间</label><input class="form-input" type="time" id="add-time" /></div>
+          <button class="btn btn-primary" id="save-record" style="width:100%;justify-content:center;padding:0.75rem;">保存</button>
+        </div>
+      </div>
+    </div>
+
+    <script src="./data-store.js"></script>
+    <script>
+    const PAGE_SIZE = 20;
+    let currentPage = 1;
+    let currentCategory = '全部';
+    let filteredData = [];
+
+    function init() {
+      const stats = DataStore.getStats();
+      document.getElementById('data-stats').innerHTML = `
+        <div class="card card-interactive stat-card"><div class="stat-icon green"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/></svg></div><div class="stat-info"><div class="stat-label">总记录数</div><div class="stat-value">${stats.total.toLocaleString()}<span class="stat-unit">条</span></div><div class="stat-change up">覆盖${stats.days}天</div></div></div>
+        <div class="card card-interactive stat-card"><div class="stat-icon blue"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg></div><div class="stat-info"><div class="stat-label">今日录入</div><div class="stat-value">${stats.today}<span class="stat-unit">条</span></div></div></div>
+        <div class="card card-interactive stat-card"><div class="stat-icon amber"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg></div><div class="stat-info"><div class="stat-label">体征数据</div><div class="stat-value">${stats.byCategory['体征'].toLocaleString()}<span class="stat-unit">条</span></div></div></div>
+        <div class="card card-interactive stat-card"><div class="stat-icon red"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10M12 20V4M6 20v-6"/></svg></div><div class="stat-info"><div class="stat-label">运动数据</div><div class="stat-value">${stats.byCategory['运动'].toLocaleString()}<span class="stat-unit">条</span></div></div></div>`;
+
+      document.getElementById('add-date').value = new Date().toISOString().split('T')[0];
+      document.getElementById('add-time').value = new Date().toTimeString().slice(0,5);
+
+      applyFilter();
+    }
+
+    function applyFilter() {
+      filteredData = DataStore.filterByCategory(currentCategory);
+      filteredData.sort((a, b) => b.timestamp - a.timestamp);
+      document.getElementById('record-count').textContent = filteredData.length.toLocaleString() + ' 条';
+      document.getElementById('table-title').textContent = currentCategory === '全部' ? '全部数据' : currentCategory + '数据';
+      renderPage();
+    }
+
+    function renderPage() {
+      const total = filteredData.length;
+      const totalPages = Math.ceil(total / PAGE_SIZE);
+      if (currentPage > totalPages) currentPage = totalPages || 1;
+      const start = (currentPage - 1) * PAGE_SIZE;
+      const pageData = filteredData.slice(start, start + PAGE_SIZE);
+      const tbody = document.getElementById('data-tbody');
+      tbody.innerHTML = pageData.map((r, i) => `
+        <tr>
+          <td style="font-size:0.8rem;">${start + i + 1}</td>
+          <td style="font-size:0.825rem;">${r.date}</td>
+          <td style="font-size:0.825rem;">${r.time}</td>
+          <td><span class="badge ${r.category==='体征'?'badge-green':r.category==='运动'?'badge-blue':r.category==='饮食'?'badge-amber':'badge-purple'}">${r.category}</span></td>
+          <td style="font-size:0.825rem;">${r.icon} ${r.type}</td>
+          <td style="font-weight:600;font-size:0.85rem;">${r.value}${r.unit}</td>
+          <td style="font-size:0.78rem;color:var(--color-muted-text);">${r.device}</td>
+          <td>${r.status==='warning'?'<span class="badge badge-amber">注意</span>':'<span class="badge badge-green">正常</span>'}</td>
+        </tr>`).join('');
+
+      document.getElementById('page-info').textContent = `第 ${currentPage} 页 / 共 ${totalPages} 页（${total.toLocaleString()} 条）`;
+      renderPagination(totalPages);
+    }
+
+    function renderPagination(totalPages) {
+      const pg = document.getElementById('pagination');
+      let html = `<button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.75rem;" ${currentPage<=1?'disabled':''} onclick="goPage(${currentPage-1})">上一页</button>`;
+      const startP = Math.max(1, currentPage - 2);
+      const endP = Math.min(totalPages, currentPage + 2);
+      for (let i = startP; i <= endP; i++) {
+        html += `<button class="btn ${i===currentPage?'btn-primary':'btn-secondary'}" style="padding:0.3rem 0.5rem;font-size:0.75rem;min-width:2rem;" onclick="goPage(${i})">${i}</button>`;
+      }
+      html += `<button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.75rem;" ${currentPage>=totalPages?'disabled':''} onclick="goPage(${currentPage+1})">下一页</button>`;
+      pg.innerHTML = html;
+    }
+
+    window.goPage = function(p) { currentPage = p; renderPage(); window.scrollTo({top:300,behavior:'smooth'}); };
+
+    // Category tabs
+    document.querySelectorAll('#category-tabs .tab-btn').forEach(btn => {
+      btn.addEventListener('click', function() {
+        document.querySelectorAll('#category-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+        this.classList.add('active');
+        currentCategory = this.dataset.cat;
+        currentPage = 1;
+        applyFilter();
+      });
+    });
+
+    // Add data modal
+    document.getElementById('add-data-btn').addEventListener('click', () => { document.getElementById('add-modal').style.display = 'flex'; });
+    document.getElementById('close-modal').addEventListener('click', () => { document.getElementById('add-modal').style.display = 'none'; });
+    document.getElementById('add-modal').addEventListener('click', function(e) { if (e.target === this) this.style.display = 'none'; });
+
+    document.getElementById('save-record').addEventListener('click', function() {
+      const type = document.getElementById('add-type').value.trim();
+      const value = document.getElementById('add-value').value;
+      if (!type || !value) { alert('请填写指标名称和数值'); return; }
+      const record = {
+        date: document.getElementById('add-date').value || new Date().toISOString().split('T')[0],
+        time: document.getElementById('add-time').value || new Date().toTimeString().slice(0,5),
+        category: document.getElementById('add-category').value,
+        type, value: parseFloat(value), unit: document.getElementById('add-unit').value || '',
+        icon: '', device: document.getElementById('add-device').value,
+        status: 'normal'
+      };
+      DataStore.addRecord(record);
+      document.getElementById('add-modal').style.display = 'none';
+      document.getElementById('add-type').value = '';
+      document.getElementById('add-value').value = '';
+      document.getElementById('add-unit').value = '';
+      alert('✅ 数据录入成功！');
+      applyFilter();
+    });
+
+    // Export CSV
+    document.getElementById('export-data-btn').addEventListener('click', function() {
+      const data = currentCategory === '全部' ? DataStore.load() : DataStore.filterByCategory(currentCategory);
+      let csv = '\uFEFF序号,日期,时间,类别,指标,数值,单位,来源,状态\n';
+      data.forEach((r, i) => {
+        csv += `${i+1},${r.date},${r.time},${r.category},${r.type},${r.value},${r.unit},${r.device},${r.status}\n`;
+      });
+      const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      link.href = URL.createObjectURL(blob);
+      link.download = `健康数据_${currentCategory}_${new Date().toISOString().split('T')[0]}.csv`;
+      link.click();
+      URL.revokeObjectURL(link.href);
+    });
+
+    init();
+    </script>
   </body>
 </html>
