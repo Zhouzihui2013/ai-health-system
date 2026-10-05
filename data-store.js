@@ -197,28 +197,64 @@ const DataStore = {
   loadUsers() {
     try {
       const data = localStorage.getItem(this.USERS_KEY);
-      if (data) return JSON.parse(data);
+      if (data) {
+        const parsed = JSON.parse(data);
+        if (parsed && parsed.length > 0) return parsed;
+      }
     } catch(e) {}
     const users = this.generateUsers();
     localStorage.setItem(this.USERS_KEY, JSON.stringify(users));
     return users;
   },
 
+  saveUsers(users) {
+    localStorage.setItem(this.USERS_KEY, JSON.stringify(users));
+  },
+
+  addUser(user) {
+    const users = this.loadUsers();
+    user.id = users.length > 0 ? Math.max(...users.map(u => u.id)) + 1 : 1;
+    users.push(user);
+    this.saveUsers(users);
+    return user;
+  },
+
+  updateUser(id, updates) {
+    const users = this.loadUsers();
+    const idx = users.findIndex(u => u.id === id);
+    if (idx >= 0) { Object.assign(users[idx], updates); this.saveUsers(users); }
+    return users[idx];
+  },
+
+  deleteUser(id) {
+    let users = this.loadUsers();
+    users = users.filter(u => u.id !== id);
+    this.saveUsers(users);
+  },
+
   generateUsers() {
-    const names = ['张明', '李芳', '王强', '赵丽', '刘伟', '陈静', '杨帆', '黄磊', '周婷', '吴刚'];
-    const phones = ['138****1234','139****5678','137****9012','136****3456','135****7890','133****2345','131****6789','130****0123','158****4567','159****8901'];
-    return names.map((name, i) => ({
-      id: i + 1,
-      name,
-      phone: phones[i],
-      age: randInt(25, 65),
-      gender: i % 2 === 0 ? '男' : '女',
-      score: randInt(60, 95),
-      vip: i < 3,
-      status: i < 8 ? 'active' : 'banned',
-      joined: `2026-${String(randInt(1,9)).padStart(2,'0')}-${String(randInt(1,28)).padStart(2,'0')}`,
-      records: randInt(50, 500)
-    }));
+    const firstNames = ['张','李','王','赵','刘','陈','杨','黄','周','吴','徐','孙','马','朱','胡','郭','林','何','高','罗'];
+    const lastChars = ['明','芳','强','丽','伟','静','帆','磊','婷','刚','洋','雪','超','敏','杰','娜','勇','艳','博','玲','建华','秀英','桂兰','玉兰','淑芬','美玲','志强','建国','海燕','文'];
+    const users = [];
+    // Generate 100 users to match dashboard scale
+    for (let i = 0; i < 100; i++) {
+      const fn = firstNames[i % firstNames.length];
+      const ln = lastChars[Math.floor(Math.random() * lastChars.length)];
+      const suffix = Math.random() > 0.5 ? lastChars[Math.floor(Math.random() * lastChars.length)] : '';
+      users.push({
+        id: i + 1,
+        name: fn + ln + suffix,
+        phone: '1' + (30 + Math.floor(Math.random() * 69)) + '****' + String(1000 + Math.floor(Math.random() * 8999)),
+        age: 18 + Math.floor(Math.random() * 55),
+        gender: Math.random() > 0.5 ? '男' : '女',
+        score: 50 + Math.floor(Math.random() * 50),
+        vip: i < 15,
+        status: Math.random() > 0.1 ? 'active' : 'banned',
+        joined: '2026-' + String(1 + Math.floor(Math.random() * 9)).padStart(2, '0') + '-' + String(1 + Math.floor(Math.random() * 28)).padStart(2, '0'),
+        records: 20 + Math.floor(Math.random() * 480)
+      });
+    }
+    return users;
   },
 
   // ===== Admin Logs =====
