@@ -315,5 +315,28 @@
       </ul>
     </nav>
   <script src="./app.js"></script>
+  <script>
+  // PDF Export using browser print
+  document.querySelectorAll('.btn').forEach(function(btn) {
+    if (btn.textContent.trim().includes('导出 PDF')) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        btn.disabled = true;
+        btn.textContent = '准备中…';
+        // Add print-specific styles
+        var printStyle = document.createElement('style');
+        printStyle.id = 'print-style';
+        printStyle.textContent = '@media print{.sidebar,.top-header,.bottom-nav,.skip-link,.tab-group,.header-right button,.btn-secondary{display:none!important}.main-wrapper{margin-left:0!important}.content-area{padding:1rem!important}body{background:#fff!important}.card{break-inside:avoid;box-shadow:none!important;border:1px solid #e2e8f0!important}}';
+        document.head.appendChild(printStyle);
+        setTimeout(function() {
+          window.print();
+          document.getElementById('print-style').remove();
+          btn.disabled = false;
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> 导出 PDF';
+        }, 300);
+      });
+    }
+  });
+  </script>
   </body>
 </html>
