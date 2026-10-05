@@ -1,0 +1,526 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>体检报告解读 — AI 健康管理系统</title>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body data-page-id="health-checkup">
+    <a class="skip-link" href="#main-content">跳转到主要内容</a>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span>AI 健康管理</span>
+        </div>
+        <nav>
+          <ul class="sidebar-nav">
+            <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>健康总览</a></li>
+            <li><a href="./health-data.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>健康数据</a></li>
+            <li><a href="./ai-analysis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/><path d="M16 2h6v6"/></svg>AI 分析</a></li>
+            <li><a href="./health-checkup.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>体检解读</a></li>
+            <li><a href="./health-plan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>健康计划</a></li>
+            <li><a href="./health-report.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>健康报告</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="main-wrapper">
+        <header class="top-header">
+          <div class="header-left">
+            <h1>体检报告 AI 解读</h1>
+          </div>
+          <div class="header-right">
+            <a href="./admin.html" class="btn btn-secondary" style="padding:0.3rem 0.75rem;font-size:0.75rem;">管理后台</a>
+            <button class="header-icon-btn" aria-label="通知">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="notification-badge"></span>
+            </button>
+            <div class="user-avatar">李</div>
+          </div>
+        </header>
+
+        <main id="main-content" class="content-area" tabindex="-1">
+          <!-- API Key Setup -->
+          <section class="card" style="margin-bottom:2rem;background:linear-gradient(135deg,#ECFDF5,#E0F2FE);border-color:transparent;">
+            <div class="card-body" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+              <div class="ai-avatar" style="width:44px;height:44px;flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width:24px;height:24px;"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/></svg>
+              </div>
+              <div style="flex:1;min-width:200px;">
+                <div style="font-size:0.9rem;font-weight:600;">AI 体检报告解读</div>
+                <div style="font-size:0.8rem;color:var(--color-muted-text);">输入体检数据，DeepSeek 大模型将逐项分析、标注异常、给出建议</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.5rem;">
+                <input type="password" id="checkup-api-key" placeholder="DeepSeek API Key" style="padding:0.4rem 0.75rem;border:1px solid var(--color-border);border-radius:var(--radius-sm);font-size:0.8rem;width:200px;" />
+                <button class="btn btn-secondary" style="padding:0.35rem 0.6rem;font-size:0.72rem;" id="checkup-conn-btn" onclick="testCheckupConn()">连接测试</button>
+                <span id="checkup-conn-status" style="font-size:0.75rem;"></span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Input + Result -->
+          <section class="grid-2">
+            <!-- Left: Input Form -->
+            <div>
+              <div class="card" style="margin-bottom:1.5rem;">
+                <div class="card-header">
+                  <h3>录入体检数据</h3>
+                  <div style="display:flex;gap:0.5rem;">
+                    <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.72rem;" onclick="loadSampleData()">填入示例</button>
+                    <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.72rem;" onclick="clearCheckupForm()">清空</button>
+                  </div>
+                </div>
+                <div class="card-body">
+                  <div class="tab-group" style="margin-bottom:1.25rem;" id="checkup-tabs">
+                    <button class="tab-btn active" onclick="switchCheckupTab(this,'general')">一般检查</button>
+                    <button class="tab-btn" onclick="switchCheckupTab(this,'blood')">血常规</button>
+                    <button class="tab-btn" onclick="switchCheckupTab(this,'biochem')">生化</button>
+                    <button class="tab-btn" onclick="switchCheckupTab(this,'urine')">尿常规</button>
+                  </div>
+
+                  <!-- General -->
+                  <div id="tab-general" class="checkup-tab-content">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                      <div class="form-group">
+                        <label class="form-label">身高 (cm)</label>
+                        <input class="form-input" type="number" id="ck-height" placeholder="175" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">体重 (kg)</label>
+                        <input class="form-input" type="number" id="ck-weight" placeholder="68.5" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">BMI</label>
+                        <input class="form-input" type="text" id="ck-bmi" placeholder="自动计算" readonly style="background:var(--color-background);" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">血压 (收缩/舒张 mmHg)</label>
+                        <div style="display:flex;gap:0.5rem;">
+                          <input class="form-input" type="number" id="ck-bp-sys" placeholder="120" />
+                          <span style="line-height:2.5;">/</span>
+                          <input class="form-input" type="number" id="ck-bp-dia" placeholder="80" />
+                        </div>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">心率 (次/分)</label>
+                        <input class="form-input" type="number" id="ck-heart-rate" placeholder="72" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">视力 (左/右)</label>
+                        <div style="display:flex;gap:0.5rem;">
+                          <input class="form-input" type="text" id="ck-vision-l" placeholder="5.0" />
+                          <span style="line-height:2.5;">/</span>
+                          <input class="form-input" type="text" id="ck-vision-r" placeholder="4.8" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Blood -->
+                  <div id="tab-blood" class="checkup-tab-content" style="display:none;">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                      <div class="form-group">
+                        <label class="form-label">白细胞 (×10⁹/L)</label>
+                        <input class="form-input" type="number" step="0.1" id="ck-wbc" placeholder="4.0-10.0" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">红细胞 (×10¹²/L)</label>
+                        <input class="form-input" type="number" step="0.01" id="ck-rbc" placeholder="男4.0-5.5" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">血红蛋白 (g/L)</label>
+                        <input class="form-input" type="number" id="ck-hgb" placeholder="男120-160" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">血小板 (×10⁹/L)</label>
+                        <input class="form-input" type="number" id="ck-plt" placeholder="100-300" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">中性粒细胞 (%)</label>
+                        <input class="form-input" type="number" step="0.1" id="ck-neu" placeholder="50-70" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">淋巴细胞 (%)</label>
+                        <input class="form-input" type="number" step="0.1" id="ck-lym" placeholder="20-40" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Biochem -->
+                  <div id="tab-biochem" class="checkup-tab-content" style="display:none;">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                      <div class="form-group">
+                        <label class="form-label">空腹血糖 (mmol/L)</label>
+                        <input class="form-input" type="number" step="0.1" id="ck-glu" placeholder="3.9-6.1" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">总胆固醇 (mmol/L)</label>
+                        <input class="form-input" type="number" step="0.1" id="ck-tc" placeholder="<5.2" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">甘油三酯 (mmol/L)</label>
+                        <input class="form-input" type="number" step="0.1" id="ck-tg" placeholder="<1.7" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">高密度脂蛋白 (mmol/L)</label>
+                        <input class="form-input" type="number" step="0.1" id="ck-hdl" placeholder=">1.0" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">低密度脂蛋白 (mmol/L)</label>
+                        <input class="form-input" type="number" step="0.1" id="ck-ldl" placeholder="<3.4" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">尿酸 (μmol/L)</label>
+                        <input class="form-input" type="number" id="ck-ua" placeholder="男<420" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">谷丙转氨酶 ALT (U/L)</label>
+                        <input class="form-input" type="number" id="ck-alt" placeholder="0-40" />
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">肌酐 (μmol/L)</label>
+                        <input class="form-input" type="number" id="ck-cr" placeholder="男44-133" />
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- Urine -->
+                  <div id="tab-urine" class="checkup-tab-content" style="display:none;">
+                    <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+                      <div class="form-group">
+                        <label class="form-label">尿蛋白</label>
+                        <select class="form-input" id="ck-protein">
+                          <option value="">请选择</option>
+                          <option value="阴性(-)">阴性 (-)</option>
+                          <option value="阳性(+)">阳性 (+)</option>
+                          <option value="阳性(++)">阳性 (++)</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">尿糖</label>
+                        <select class="form-input" id="ck-glucose">
+                          <option value="">请选择</option>
+                          <option value="阴性(-)">阴性 (-)</option>
+                          <option value="阳性(+)">阳性 (+)</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">尿潜血</label>
+                        <select class="form-input" id="ck-blood-urine">
+                          <option value="">请选择</option>
+                          <option value="阴性(-)">阴性 (-)</option>
+                          <option value="阳性(+)">阳性 (+)</option>
+                        </select>
+                      </div>
+                      <div class="form-group">
+                        <label class="form-label">尿比重</label>
+                        <input class="form-input" type="text" id="ck-sg" placeholder="1.015-1.025" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button class="btn btn-primary" style="width:100%;justify-content:center;padding:0.875rem;font-size:1rem;" id="analyze-btn" onclick="analyzeCheckup()" data-anchor-id="health-checkup.analyze">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/><path d="M16 2h6v6"/></svg>
+                AI 智能解读
+              </button>
+            </div>
+
+            <!-- Right: AI Result -->
+            <div>
+              <div class="card" style="min-height:600px;">
+                <div class="card-header">
+                  <h3>AI 解读结果</h3>
+                  <span id="result-status" class="badge badge-blue" style="display:none;">分析中…</span>
+                </div>
+                <div class="card-body" id="checkup-result" data-state="default">
+                  <div style="text-align:center;padding:3rem 1rem;color:var(--color-muted-text);">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" style="width:64px;height:64px;margin:0 auto 1rem;opacity:0.3;"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>
+                    <div style="font-size:0.95rem;font-weight:500;margin-bottom:0.5rem;">等待体检数据</div>
+                    <div style="font-size:0.82rem;">在左侧录入体检数据后，点击「AI 智能解读」<br>DeepSeek 将逐项分析并给出专业建议</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- History -->
+          <section class="card" style="margin-top:2rem;">
+            <div class="card-header">
+              <h3>历史解读记录</h3>
+              <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.72rem;" onclick="alert('历史记录功能开发中')">查看全部</button>
+            </div>
+            <div style="overflow-x:auto;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th>日期</th>
+                    <th>体检类型</th>
+                    <th>异常项</th>
+                    <th>AI 评估</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td style="font-size:0.825rem;">2026-09-15</td>
+                    <td>年度体检</td>
+                    <td><span class="badge badge-amber">2 项偏高</span></td>
+                    <td><span class="badge badge-green">整体良好</span></td>
+                    <td><button class="btn btn-secondary" style="padding:0.25rem 0.5rem;font-size:0.72rem;" onclick="alert('查看详细解读报告')">查看</button></td>
+                  </tr>
+                  <tr>
+                    <td style="font-size:0.825rem;">2026-03-20</td>
+                    <td>入职体检</td>
+                    <td><span class="badge badge-green">全部正常</span></td>
+                    <td><span class="badge badge-green">健康</span></td>
+                    <td><button class="btn btn-secondary" style="padding:0.25rem 0.5rem;font-size:0.72rem;" onclick="alert('查看详细解读报告')">查看</button></td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <nav class="bottom-nav">
+      <ul class="bottom-nav-list">
+        <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>总览</a></li>
+        <li><a href="./health-data.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>数据</a></li>
+        <li><a href="./ai-analysis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/></svg>AI分析</a></li>
+        <li><a href="./health-checkup.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>体检</a></li>
+        <li><a href="./health-plan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>计划</a></li>
+      </ul>
+    </nav>
+
+    <script src="./app.js"></script>
+    <script>
+    // BMI auto-calc
+    const hInput = document.getElementById('ck-height');
+    const wInput = document.getElementById('ck-weight');
+    const bmiInput = document.getElementById('ck-bmi');
+    function calcBMI() {
+      const h = parseFloat(hInput.value) / 100;
+      const w = parseFloat(wInput.value);
+      if (h > 0 && w > 0) bmiInput.value = (w / (h * h)).toFixed(1);
+    }
+    hInput.addEventListener('input', calcBMI);
+    wInput.addEventListener('input', calcBMI);
+
+    // Tab switching
+    function switchCheckupTab(btn, tabId) {
+      document.querySelectorAll('#checkup-tabs .tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.checkup-tab-content').forEach(t => t.style.display = 'none');
+      document.getElementById('tab-' + tabId).style.display = 'block';
+    }
+
+    // Connection test
+    async function testCheckupConn() {
+      const key = document.getElementById('checkup-api-key').value.trim();
+      const status = document.getElementById('checkup-conn-status');
+      if (!key) { status.textContent = '⚠️ 请输入Key'; status.style.color = 'var(--color-warning)'; return; }
+      status.textContent = '测试中…'; status.style.color = 'var(--color-accent)';
+      try {
+        const r = await fetch('https://api.deepseek.com/v1/chat/completions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+          body: JSON.stringify({ model: 'deepseek-chat', messages: [{ role: 'user', content: 'hi' }], max_tokens: 5 })
+        });
+        if (r.ok) { status.textContent = '✅ 已连接'; status.style.color = 'var(--color-primary)'; }
+        else { const e = await r.json(); status.textContent = '❌ ' + (e.error?.message || r.status); status.style.color = 'var(--color-danger)'; }
+      } catch (e) { status.textContent = '❌ 网络错误'; status.style.color = 'var(--color-danger)'; }
+    }
+
+    // Load sample data
+    function loadSampleData() {
+      document.getElementById('ck-height').value = '175';
+      document.getElementById('ck-weight').value = '72';
+      calcBMI();
+      document.getElementById('ck-bp-sys').value = '132';
+      document.getElementById('ck-bp-dia').value = '85';
+      document.getElementById('ck-heart-rate').value = '78';
+      document.getElementById('ck-vision-l').value = '5.0';
+      document.getElementById('ck-vision-r').value = '4.8';
+      // Blood
+      document.getElementById('ck-wbc').value = '6.5';
+      document.getElementById('ck-rbc').value = '4.8';
+      document.getElementById('ck-hgb').value = '145';
+      document.getElementById('ck-plt').value = '220';
+      document.getElementById('ck-neu').value = '58';
+      document.getElementById('ck-lym').value = '32';
+      // Biochem
+      document.getElementById('ck-glu').value = '6.8';
+      document.getElementById('ck-tc').value = '5.6';
+      document.getElementById('ck-tg').value = '2.1';
+      document.getElementById('ck-hdl').value = '1.2';
+      document.getElementById('ck-ldl').value = '3.8';
+      document.getElementById('ck-ua').value = '450';
+      document.getElementById('ck-alt').value = '35';
+      document.getElementById('ck-cr').value = '88';
+      // Urine
+      document.getElementById('ck-protein').value = '阴性(-)';
+      document.getElementById('ck-glucose').value = '阴性(-)';
+      document.getElementById('ck-blood-urine').value = '阴性(-)';
+      document.getElementById('ck-sg').value = '1.020';
+    }
+
+    function clearCheckupForm() {
+      document.querySelectorAll('.checkup-tab-content input').forEach(i => i.value = '');
+      document.querySelectorAll('.checkup-tab-content select').forEach(s => s.value = '');
+      document.getElementById('checkup-result').innerHTML = '<div style="text-align:center;padding:3rem 1rem;color:var(--color-muted-text);"><div style="font-size:0.95rem;font-weight:500;margin-bottom:0.5rem;">已清空</div><div style="font-size:0.82rem;">重新录入数据后可再次进行 AI 解读</div></div>';
+    }
+
+    // Collect form data
+    function collectData() {
+      const fields = {
+        '身高': hInput.value ? hInput.value + 'cm' : '',
+        '体重': wInput.value ? wInput.value + 'kg' : '',
+        'BMI': bmiInput.value || '',
+        '血压': (document.getElementById('ck-bp-sys').value && document.getElementById('ck-bp-dia').value) ? document.getElementById('ck-bp-sys').value + '/' + document.getElementById('ck-bp-dia').value + 'mmHg' : '',
+        '心率': document.getElementById('ck-heart-rate').value ? document.getElementById('ck-heart-rate').value + '次/分' : '',
+        '视力': (document.getElementById('ck-vision-l').value || document.getElementById('ck-vision-r').value) ? '左' + (document.getElementById('ck-vision-l').value || '-') + '/右' + (document.getElementById('ck-vision-r').value || '-') : '',
+        '白细胞': document.getElementById('ck-wbc').value ? document.getElementById('ck-wbc').value + '×10⁹/L' : '',
+        '红细胞': document.getElementById('ck-rbc').value ? document.getElementById('ck-rbc').value + '×10¹²/L' : '',
+        '血红蛋白': document.getElementById('ck-hgb').value ? document.getElementById('ck-hgb').value + 'g/L' : '',
+        '血小板': document.getElementById('ck-plt').value ? document.getElementById('ck-plt').value + '×10⁹/L' : '',
+        '中性粒细胞': document.getElementById('ck-neu').value ? document.getElementById('ck-neu').value + '%' : '',
+        '淋巴细胞': document.getElementById('ck-lym').value ? document.getElementById('ck-lym').value + '%' : '',
+        '空腹血糖': document.getElementById('ck-glu').value ? document.getElementById('ck-glu').value + 'mmol/L' : '',
+        '总胆固醇': document.getElementById('ck-tc').value ? document.getElementById('ck-tc').value + 'mmol/L' : '',
+        '甘油三酯': document.getElementById('ck-tg').value ? document.getElementById('ck-tg').value + 'mmol/L' : '',
+        '高密度脂蛋白': document.getElementById('ck-hdl').value ? document.getElementById('ck-hdl').value + 'mmol/L' : '',
+        '低密度脂蛋白': document.getElementById('ck-ldl').value ? document.getElementById('ck-ldl').value + 'mmol/L' : '',
+        '尿酸': document.getElementById('ck-ua').value ? document.getElementById('ck-ua').value + 'μmol/L' : '',
+        '谷丙转氨酶ALT': document.getElementById('ck-alt').value ? document.getElementById('ck-alt').value + 'U/L' : '',
+        '肌酐': document.getElementById('ck-cr').value ? document.getElementById('ck-cr').value + 'μmol/L' : '',
+        '尿蛋白': document.getElementById('ck-protein').value || '',
+        '尿糖': document.getElementById('ck-glucose').value || '',
+        '尿潜血': document.getElementById('ck-blood-urine').value || '',
+        '尿比重': document.getElementById('ck-sg').value || ''
+      };
+      return Object.entries(fields).filter(([_, v]) => v).map(([k, v]) => k + ': ' + v).join('\n');
+    }
+
+    // Analyze
+    async function analyzeCheckup() {
+      const key = document.getElementById('checkup-api-key').value.trim();
+      if (!key) { alert('请先输入 DeepSeek API Key'); return; }
+      const data = collectData();
+      if (!data) { alert('请至少录入一些体检数据'); return; }
+
+      const btn = document.getElementById('analyze-btn');
+      const result = document.getElementById('checkup-result');
+      const status = document.getElementById('result-status');
+      btn.disabled = true;
+      btn.innerHTML = '<div class="typing-indicator" style="display:inline-flex;"><span></span><span></span><span></span></div> AI 分析中…';
+      status.style.display = 'inline-flex';
+      result.innerHTML = '<div style="padding:2rem;text-align:center;color:var(--color-muted-text);"><div class="typing-indicator" style="justify-content:center;display:inline-flex;"><span></span><span></span><span></span></div><div style="margin-top:0.75rem;">DeepSeek 正在逐项分析体检数据…</div></div>';
+
+      const prompt = `你是专业的体检报告解读医生。请对以下体检数据进行逐项分析：
+
+${data}
+
+请按照以下格式输出：
+
+## 📊 总体评估
+给出整体健康评分（满分100）和一句话总结。
+
+## ⚠️ 异常指标
+逐一列出异常项，说明：
+- 指标名称和检测值
+- 正常参考范围
+- 偏高/偏低的临床意义
+- 可能原因
+
+## ✅ 正常指标
+简要确认正常项目。
+
+## 💡 健康建议
+给出具体可执行的改善建议（饮食、运动、生活习惯）。
+
+## 🏥 就医建议
+如有需要进一步检查的项目，请明确指出。
+
+注意：用通俗易懂的语言，不做诊断，必要时建议就医。`;
+
+      try {
+        const resp = await fetch('https://api.deepseek.com/v1/chat/completions', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json', 'Authorization': 'Bearer ' + key },
+          body: JSON.stringify({
+            model: 'deepseek-chat',
+            messages: [
+              { role: 'system', content: '你是专业的体检报告解读助手，精通临床医学检验指标解读。用通俗易懂的中文回答。' },
+              { role: 'user', content: prompt }
+            ],
+            temperature: 0.5,
+            max_tokens: 3000,
+            stream: true
+          })
+        });
+
+        if (!resp.ok) {
+          const err = await resp.json();
+          result.innerHTML = '<div style="padding:2rem;color:var(--color-danger);">❌ API 错误: ' + (err.error?.message || resp.status) + '</div>';
+          btn.disabled = false;
+          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/><path d="M16 2h6v6"/></svg> AI 智能解读';
+          status.style.display = 'none';
+          return;
+        }
+
+        result.innerHTML = '<div id="stream-output" style="font-size:0.875rem;line-height:1.8;padding:0.5rem 0;"></div>';
+        const output = document.getElementById('stream-output');
+        let fullText = '';
+
+        const reader = resp.body.getReader();
+        const decoder = new TextDecoder();
+        let buffer = '';
+
+        while (true) {
+          const { done, value } = await reader.read();
+          if (done) break;
+          buffer += decoder.decode(value, { stream: true });
+          const lines = buffer.split('\n');
+          buffer = lines.pop() || '';
+          for (const line of lines) {
+            if (line.startsWith('data: ')) {
+              const d = line.slice(6).trim();
+              if (d === '[DONE]') continue;
+              try {
+                const json = JSON.parse(d);
+                const delta = json.choices?.[0]?.delta?.content || '';
+                if (delta) {
+                  fullText += delta;
+                  output.innerHTML = formatMarkdown(fullText);
+                  output.parentElement.parentElement.scrollTop = output.parentElement.parentElement.scrollHeight;
+                }
+              } catch (e) {}
+            }
+          }
+        }
+
+        status.textContent = '已完成';
+        status.className = 'badge badge-green';
+      } catch (e) {
+        result.innerHTML = '<div style="padding:2rem;color:var(--color-danger);">❌ 请求失败: ' + e.message + '</div>';
+      }
+      btn.disabled = false;
+      btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:20px;height:20px;"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/><path d="M16 2h6v6"/></svg> 重新解读';
+    }
+
+    // Simple markdown-like formatter
+    function formatMarkdown(text) {
+      return text
+        .replace(/^## (.+)$/gm, '<h3 style="font-size:1rem;font-weight:700;margin:1rem 0 0.5rem;color:var(--color-text);">$1</h3>')
+        .replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--color-primary-dark);">$1</strong>')
+        .replace(/^- (.+)$/gm, '<div style="padding-left:1rem;margin:0.25rem 0;">• $1</div>')
+        .replace(/\n/g, '<br>');
+    }
+    </script>
+  </body>
+</html>
