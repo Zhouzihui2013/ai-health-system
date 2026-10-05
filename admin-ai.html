@@ -347,7 +347,26 @@
       </ul>
     </nav>
 
+    <script src="./data-store.js"></script>
     <script src="./app.js"></script>
+    <script>
+    // Load saved API key on page load
+    (function() {
+      var savedKey = DataStore.getApiKey();
+      if (savedKey) {
+        document.getElementById('ds-api-key').value = savedKey;
+        document.getElementById('conn-status').textContent = '✅ 已保存';
+        document.getElementById('conn-status').style.color = 'var(--color-primary)';
+      }
+    })();
+    // Override testConnection to persist key
+    var origTest = window.testConnection;
+    window.testConnection = function() {
+      var key = document.getElementById('ds-api-key').value.trim();
+      if (key) DataStore.setApiKey(key);
+      if (origTest) origTest();
+    };
+    </script>
     <script>
     // DeepSeek API Integration
     const chatMessages = document.getElementById('chat-messages');
