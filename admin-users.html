@@ -1,0 +1,284 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>用户管理 — AI 健康管理系统</title>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body data-page-id="admin-users">
+    <a class="skip-link" href="#main-content">跳转到主要内容</a>
+    <div class="app-layout">
+      <aside class="sidebar admin-sidebar">
+        <div class="sidebar-brand">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span>管理后台</span>
+        </div>
+        <nav>
+          <ul class="sidebar-nav">
+            <li class="admin-nav-section">概览</li>
+            <li><a href="./admin.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>仪表盘</a></li>
+            <li class="admin-divider"></li>
+            <li class="admin-nav-section">业务管理</li>
+            <li><a href="./admin-users.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>用户管理</a></li>
+            <li><a href="./health-data.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>健康数据</a></li>
+            <li class="admin-divider"></li>
+            <li class="admin-nav-section">AI 服务</li>
+            <li><a href="./admin-ai.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/><path d="M16 2h6v6"/></svg>AI 配置</a></li>
+            <li><a href="./admin-ai.html#logs"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>调用日志</a></li>
+            <li class="admin-divider"></li>
+            <li class="admin-nav-section">前台</li>
+            <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>返回前台</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="main-wrapper">
+        <header class="top-header">
+          <div class="header-left">
+            <h1>用户管理</h1>
+          </div>
+          <div class="header-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" placeholder="搜索用户名、手机号…" />
+          </div>
+          <div class="header-right">
+            <button class="btn btn-primary" style="padding:0.4rem 1rem;font-size:0.8rem;">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+              导出
+            </button>
+          </div>
+        </header>
+
+        <main id="main-content" class="content-area" tabindex="-1">
+          <!-- User Stats -->
+          <section class="stat-grid" style="grid-template-columns: repeat(4,1fr); margin-bottom:2rem;">
+            <div class="card stat-card" style="padding:1.25rem;">
+              <div class="stat-info" style="text-align:center;width:100%;">
+                <div class="stat-label">总用户</div>
+                <div class="stat-value" style="font-size:1.75rem;">1,284</div>
+              </div>
+            </div>
+            <div class="card stat-card" style="padding:1.25rem;">
+              <div class="stat-info" style="text-align:center;width:100%;">
+                <div class="stat-label"><span class="status-dot online"></span>在线</div>
+                <div class="stat-value" style="font-size:1.75rem;color:var(--color-primary);">342</div>
+              </div>
+            </div>
+            <div class="card stat-card" style="padding:1.25rem;">
+              <div class="stat-info" style="text-align:center;width:100%;">
+                <div class="stat-label">今日新增</div>
+                <div class="stat-value" style="font-size:1.75rem;color:var(--color-accent);">23</div>
+              </div>
+            </div>
+            <div class="card stat-card" style="padding:1.25rem;">
+              <div class="stat-info" style="text-align:center;width:100%;">
+                <div class="stat-label"><span class="status-dot error"></span>封禁</div>
+                <div class="stat-value" style="font-size:1.75rem;color:var(--color-danger);">7</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Filters -->
+          <section style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;flex-wrap:wrap;">
+            <div class="tab-group">
+              <button class="tab-btn active">全部 (1284)</button>
+              <button class="tab-btn">活跃 (856)</button>
+              <button class="tab-btn">不活跃 (421)</button>
+              <button class="tab-btn">封禁 (7)</button>
+            </div>
+            <div style="margin-left:auto;display:flex;gap:0.5rem;">
+              <select class="form-input" style="width:auto;padding:0.4rem 0.75rem;font-size:0.8rem;">
+                <option>排序: 最近活跃</option>
+                <option>排序: 注册时间</option>
+                <option>排序: 健康评分</option>
+              </select>
+            </div>
+          </section>
+
+          <!-- User Table -->
+          <section class="card">
+            <div style="overflow-x:auto;">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="width:40px;"><input type="checkbox" /></th>
+                    <th>用户</th>
+                    <th>手机号</th>
+                    <th>健康评分</th>
+                    <th>AI 调用次数</th>
+                    <th>状态</th>
+                    <th>注册时间</th>
+                    <th>操作</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="display:flex;align-items:center;gap:0.75rem;">
+                        <div class="user-row-avatar" style="background:linear-gradient(135deg,#10B981,#0EA5E9);">李</div>
+                        <div>
+                          <div style="font-weight:600;font-size:0.85rem;">李明远</div>
+                          <div style="font-size:0.72rem;color:var(--color-muted-text);">VIP 会员</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="font-size:0.825rem;">138****6721</td>
+                    <td><span class="badge badge-green">82 分</span></td>
+                    <td style="font-size:0.825rem;">156 次</td>
+                    <td><span class="status-dot online"></span>在线</td>
+                    <td style="font-size:0.825rem;">2026-08-15</td>
+                    <td>
+                      <button class="btn btn-secondary" style="padding:0.25rem 0.5rem;font-size:0.72rem;">查看</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="display:flex;align-items:center;gap:0.75rem;">
+                        <div class="user-row-avatar" style="background:linear-gradient(135deg,#6366F1,#0EA5E9);">王</div>
+                        <div>
+                          <div style="font-weight:600;font-size:0.85rem;">王思涵</div>
+                          <div style="font-size:0.72rem;color:var(--color-muted-text);">普通用户</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="font-size:0.825rem;">159****3382</td>
+                    <td><span class="badge badge-green">91 分</span></td>
+                    <td style="font-size:0.825rem;">89 次</td>
+                    <td><span class="status-dot online"></span>在线</td>
+                    <td style="font-size:0.825rem;">2026-09-02</td>
+                    <td>
+                      <button class="btn btn-secondary" style="padding:0.25rem 0.5rem;font-size:0.72rem;">查看</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="display:flex;align-items:center;gap:0.75rem;">
+                        <div class="user-row-avatar" style="background:linear-gradient(135deg,#F59E0B,#EF4444);">张</div>
+                        <div>
+                          <div style="font-weight:600;font-size:0.85rem;">张雨婷</div>
+                          <div style="font-size:0.72rem;color:var(--color-muted-text);">VIP 会员</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="font-size:0.825rem;">186****9954</td>
+                    <td><span class="badge badge-amber">67 分</span></td>
+                    <td style="font-size:0.825rem;">234 次</td>
+                    <td><span class="status-dot offline"></span>离线</td>
+                    <td style="font-size:0.825rem;">2026-07-20</td>
+                    <td>
+                      <button class="btn btn-secondary" style="padding:0.25rem 0.5rem;font-size:0.72rem;">查看</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="display:flex;align-items:center;gap:0.75rem;">
+                        <div class="user-row-avatar" style="background:linear-gradient(135deg,#0EA5E9,#10B981);">陈</div>
+                        <div>
+                          <div style="font-weight:600;font-size:0.85rem;">陈浩然</div>
+                          <div style="font-size:0.72rem;color:var(--color-muted-text);">普通用户</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="font-size:0.825rem;">137****2108</td>
+                    <td><span class="badge badge-green">78 分</span></td>
+                    <td style="font-size:0.825rem;">45 次</td>
+                    <td><span class="status-dot online"></span>在线</td>
+                    <td style="font-size:0.825rem;">2026-09-18</td>
+                    <td>
+                      <button class="btn btn-secondary" style="padding:0.25rem 0.5rem;font-size:0.72rem;">查看</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="display:flex;align-items:center;gap:0.75rem;">
+                        <div class="user-row-avatar" style="background:linear-gradient(135deg,#EF4444,#F59E0B);">刘</div>
+                        <div>
+                          <div style="font-weight:600;font-size:0.85rem;">刘佳怡</div>
+                          <div style="font-size:0.72rem;color:var(--color-muted-text);">普通用户</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="font-size:0.825rem;">155****7746</td>
+                    <td><span class="badge badge-red">45 分</span></td>
+                    <td style="font-size:0.825rem;">12 次</td>
+                    <td><span class="status-dot offline"></span>离线</td>
+                    <td style="font-size:0.825rem;">2026-10-01</td>
+                    <td>
+                      <button class="btn btn-secondary" style="padding:0.25rem 0.5rem;font-size:0.72rem;">查看</button>
+                    </td>
+                  </tr>
+                  <tr>
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="display:flex;align-items:center;gap:0.75rem;">
+                        <div class="user-row-avatar" style="background:linear-gradient(135deg,#8B5CF6,#EC4899);">赵</div>
+                        <div>
+                          <div style="font-weight:600;font-size:0.85rem;">赵子轩</div>
+                          <div style="font-size:0.72rem;color:var(--color-muted-text);">VIP 会员</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="font-size:0.825rem;">188****5563</td>
+                    <td><span class="badge badge-green">85 分</span></td>
+                    <td style="font-size:0.825rem;">312 次</td>
+                    <td><span class="status-dot online"></span>在线</td>
+                    <td style="font-size:0.825rem;">2026-06-10</td>
+                    <td>
+                      <button class="btn btn-secondary" style="padding:0.25rem 0.5rem;font-size:0.72rem;">查看</button>
+                    </td>
+                  </tr>
+                  <tr style="opacity:0.5;">
+                    <td><input type="checkbox" /></td>
+                    <td>
+                      <div style="display:flex;align-items:center;gap:0.75rem;">
+                        <div class="user-row-avatar" style="background:#94A3B8;">孙</div>
+                        <div>
+                          <div style="font-weight:600;font-size:0.85rem;text-decoration:line-through;">孙某</div>
+                          <div style="font-size:0.72rem;color:var(--color-danger);">已封禁</div>
+                        </div>
+                      </div>
+                    </td>
+                    <td style="font-size:0.825rem;">132****8890</td>
+                    <td><span class="badge badge-red">--</span></td>
+                    <td style="font-size:0.825rem;">0 次</td>
+                    <td><span class="status-dot error"></span>封禁</td>
+                    <td style="font-size:0.825rem;">2026-09-25</td>
+                    <td>
+                      <button class="btn btn-secondary" style="padding:0.25rem 0.5rem;font-size:0.72rem;">解封</button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.5rem;border-top:1px solid var(--color-border);">
+              <span style="font-size:0.8rem;color:var(--color-muted-text);">共 1,284 条 · 第 1/184 页</span>
+              <div style="display:flex;gap:0.25rem;">
+                <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.75rem;" disabled>上一页</button>
+                <button class="btn btn-primary" style="padding:0.3rem 0.6rem;font-size:0.75rem;">1</button>
+                <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.75rem;">2</button>
+                <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.75rem;">3</button>
+                <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.75rem;">...</button>
+                <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.75rem;">下一页</button>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <nav class="bottom-nav">
+      <ul class="bottom-nav-list">
+        <li><a href="./admin.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>仪表盘</a></li>
+        <li><a href="./admin-users.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/></svg>用户</a></li>
+        <li><a href="./admin-ai.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/></svg>AI</a></li>
+        <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>前台</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>
