@@ -1,0 +1,312 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>健康报告 — AI 健康管理系统</title>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body data-page-id="health-report">
+    <a class="skip-link" href="#main-content">跳转到主要内容</a>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span>AI 健康管理</span>
+        </div>
+        <nav>
+          <ul class="sidebar-nav">
+            <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>健康总览</a></li>
+            <li><a href="./health-data.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>健康数据</a></li>
+            <li><a href="./ai-analysis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/><path d="M16 2h6v6"/></svg>AI 分析</a></li>
+            <li><a href="./health-plan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>健康计划</a></li>
+            <li><a href="./health-report.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>健康报告</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="main-wrapper">
+        <header class="top-header">
+          <div class="header-left">
+            <h1>健康报告</h1>
+          </div>
+          <div class="header-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" placeholder="搜索报告…" />
+          </div>
+          <div class="header-right">
+            <button class="header-icon-btn" aria-label="通知">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="notification-badge"></span>
+            </button>
+            <div class="user-avatar">李</div>
+          </div>
+        </header>
+
+        <main id="main-content" class="content-area" tabindex="-1">
+          <!-- Time Range Selector -->
+          <section style="display:flex;align-items:center;justify-content:space-between;margin-bottom:2rem;flex-wrap:wrap;gap:1rem;">
+            <div class="tab-group" data-anchor-id="health-report.time-tabs">
+              <button class="tab-btn">本周</button>
+              <button class="tab-btn active">本月</button>
+              <button class="tab-btn">季度</button>
+              <button class="tab-btn">年度</button>
+            </div>
+            <div style="display:flex;gap:0.5rem;">
+              <button class="btn btn-secondary" style="padding:0.4rem 0.8rem;font-size:0.8rem;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                导出 PDF
+              </button>
+              <button class="btn btn-secondary" style="padding:0.4rem 0.8rem;font-size:0.8rem;">分享</button>
+            </div>
+          </section>
+
+          <!-- Summary Stats -->
+          <section class="stat-grid" style="margin-bottom:2rem;">
+            <div class="card card-interactive stat-card">
+              <div class="stat-icon green">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+              </div>
+              <div class="stat-info">
+                <div class="stat-label">平均健康评分</div>
+                <div class="stat-value">82 <span class="stat-unit">分</span></div>
+                <div class="stat-change up">↑ 5 vs 上月</div>
+              </div>
+            </div>
+            <div class="card card-interactive stat-card">
+              <div class="stat-icon blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+              </div>
+              <div class="stat-info">
+                <div class="stat-label">平均心率</div>
+                <div class="stat-value">68 <span class="stat-unit">bpm</span></div>
+                <div class="stat-change up">↑ 改善 3%</div>
+              </div>
+            </div>
+            <div class="card card-interactive stat-card">
+              <div class="stat-icon amber">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+              </div>
+              <div class="stat-info">
+                <div class="stat-label">体重变化</div>
+                <div class="stat-value">-1.2 <span class="stat-unit">kg</span></div>
+                <div class="stat-change up">↑ 稳步下降</div>
+              </div>
+            </div>
+            <div class="card card-interactive stat-card">
+              <div class="stat-icon red">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </div>
+              <div class="stat-info">
+                <div class="stat-label">平均睡眠</div>
+                <div class="stat-value">7.2 <span class="stat-unit">小时</span></div>
+                <div class="stat-change down">↓ 需改善</div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Charts -->
+          <section class="grid-2" style="margin-bottom:2rem;">
+            <div class="card">
+              <div class="card-header">
+                <h3>体重趋势</h3>
+                <span style="font-size:0.8rem;color:var(--color-muted-text);">目标: 66 kg</span>
+              </div>
+              <div class="card-body">
+                <div style="display:flex;flex-direction:column;gap:0.5rem;">
+                  <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span style="font-size:0.7rem;color:var(--color-muted-text);width:40px;">70kg</span>
+                    <div style="flex:1;height:24px;background:var(--color-background);border-radius:4px;position:relative;overflow:hidden;">
+                      <div style="position:absolute;left:0;top:0;bottom:0;width:100%;background:linear-gradient(90deg, var(--color-primary) 0%, var(--color-primary) 30%, transparent 30%);opacity:0.15;"></div>
+                      <div style="position:absolute;left:0;top:0;bottom:0;width:30%;background:var(--color-primary);opacity:0.3;border-radius:4px 0 0 4px;"></div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span style="font-size:0.7rem;color:var(--color-muted-text);width:40px;">69kg</span>
+                    <div style="flex:1;height:24px;background:var(--color-background);border-radius:4px;position:relative;overflow:hidden;">
+                      <div style="position:absolute;left:0;top:0;bottom:0;width:45%;background:var(--color-primary);opacity:0.4;border-radius:4px 0 0 4px;"></div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span style="font-size:0.7rem;color:var(--color-muted-text);width:40px;">68kg</span>
+                    <div style="flex:1;height:24px;background:var(--color-background);border-radius:4px;position:relative;overflow:hidden;">
+                      <div style="position:absolute;left:0;top:0;bottom:0;width:70%;background:var(--color-primary);opacity:0.6;border-radius:4px 0 0 4px;"></div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span style="font-size:0.7rem;color:var(--color-muted-text);width:40px;font-weight:600;">67kg</span>
+                    <div style="flex:1;height:24px;background:var(--color-background);border-radius:4px;position:relative;overflow:hidden;">
+                      <div style="position:absolute;left:0;top:0;bottom:0;width:88%;background:var(--color-primary);opacity:0.8;border-radius:4px 0 0 4px;"></div>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:0.5rem;">
+                    <span style="font-size:0.7rem;color:var(--color-primary);width:40px;font-weight:700;">66kg</span>
+                    <div style="flex:1;height:24px;background:var(--color-background);border-radius:4px;position:relative;overflow:hidden;border:2px dashed var(--color-primary);opacity:0.5;">
+                      <div style="position:absolute;left:50%;top:0;bottom:0;width:2px;background:var(--color-primary);"></div>
+                    </div>
+                  </div>
+                </div>
+                <div style="text-align:center;font-size:0.75rem;color:var(--color-muted-text);margin-top:1rem;">近 4 周趋势 · 每周测量</div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3>运动消耗</h3>
+                <span style="font-size:0.8rem;color:var(--color-muted-text);">本月总计</span>
+              </div>
+              <div class="card-body">
+                <div class="chart-container" style="height:180px;">
+                  <div class="chart-bar green" style="height: 45%;"></div>
+                  <div class="chart-bar green" style="height: 62%;"></div>
+                  <div class="chart-bar green" style="height: 38%;"></div>
+                  <div class="chart-bar green" style="height: 75%;"></div>
+                  <div class="chart-bar green" style="height: 55%;"></div>
+                  <div class="chart-bar green" style="height: 88%;"></div>
+                  <div class="chart-bar green" style="height: 42%;"></div>
+                  <div class="chart-bar green" style="height: 68%;"></div>
+                  <div class="chart-bar green" style="height: 52%;"></div>
+                  <div class="chart-bar green" style="height: 80%;"></div>
+                  <div class="chart-bar green" style="height: 60%;"></div>
+                  <div class="chart-bar green" style="height: 95%;"></div>
+                  <div class="chart-bar green" style="height: 48%;"></div>
+                  <div class="chart-bar green" style="height: 72%;"></div>
+                </div>
+                <div style="display:flex;justify-content:space-between;font-size:0.7rem;color:var(--color-muted-text);padding:0 0.5rem;">
+                  <span>第1周</span><span>第2周</span><span>第3周</span><span>第4周</span>
+                </div>
+                <div style="text-align:center;margin-top:1rem;padding:0.75rem;background:var(--color-primary-light);border-radius:var(--radius-md);">
+                  <span style="font-size:1.5rem;font-weight:700;color:var(--color-primary);">12,480</span>
+                  <span style="font-size:0.85rem;color:var(--color-muted-text);margin-left:0.5rem;">千卡</span>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Detailed Metrics -->
+          <section class="grid-2" style="margin-bottom:2rem;">
+            <div class="card">
+              <div class="card-header">
+                <h3>血压变化</h3>
+                <span class="badge badge-green">正常范围</span>
+              </div>
+              <div class="card-body">
+                <div style="display:flex;flex-direction:column;gap:0.75rem;">
+                  <div style="display:flex;align-items:center;gap:1rem;padding:0.75rem;border-radius:var(--radius-md);background:var(--color-background);">
+                    <div style="font-size:0.8rem;color:var(--color-muted-text);width:60px;">第1周</div>
+                    <div style="flex:1;display:flex;align-items:center;gap:0.5rem;">
+                      <div style="height:6px;border-radius:3px;background:var(--color-primary);width:65%;"></div>
+                      <span style="font-size:0.8rem;font-weight:500;">124/82</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:1rem;padding:0.75rem;border-radius:var(--radius-md);background:var(--color-background);">
+                    <div style="font-size:0.8rem;color:var(--color-muted-text);width:60px;">第2周</div>
+                    <div style="flex:1;display:flex;align-items:center;gap:0.5rem;">
+                      <div style="height:6px;border-radius:3px;background:var(--color-primary);width:60%;"></div>
+                      <span style="font-size:0.8rem;font-weight:500;">122/80</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:1rem;padding:0.75rem;border-radius:var(--radius-md);background:var(--color-background);">
+                    <div style="font-size:0.8rem;color:var(--color-muted-text);width:60px;">第3周</div>
+                    <div style="flex:1;display:flex;align-items:center;gap:0.5rem;">
+                      <div style="height:6px;border-radius:3px;background:var(--color-primary);width:58%;"></div>
+                      <span style="font-size:0.8rem;font-weight:500;">121/79</span>
+                    </div>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:1rem;padding:0.75rem;border-radius:var(--radius-md);background:var(--color-primary-light);">
+                    <div style="font-size:0.8rem;color:var(--color-primary-dark);width:60px;font-weight:600;">第4周</div>
+                    <div style="flex:1;display:flex;align-items:center;gap:0.5rem;">
+                      <div style="height:6px;border-radius:3px;background:var(--color-primary);width:55%;"></div>
+                      <span style="font-size:0.8rem;font-weight:600;color:var(--color-primary-dark);">120/78</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3>睡眠质量分析</h3>
+                <span class="badge badge-amber">需关注</span>
+              </div>
+              <div class="card-body">
+                <div style="display:flex;flex-direction:column;gap:1rem;">
+                  <div>
+                    <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+                      <span style="font-size:0.85rem;">总睡眠</span>
+                      <span style="font-size:0.85rem;font-weight:600;">7.2h <span style="font-size:0.75rem;color:var(--color-muted-text);">/ 目标 8h</span></span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill blue" style="width: 90%;"></div></div>
+                  </div>
+                  <div>
+                    <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+                      <span style="font-size:0.85rem;">深睡时长</span>
+                      <span style="font-size:0.85rem;font-weight:600;">1.3h <span style="font-size:0.75rem;color:var(--color-warning);">偏低</span></span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill amber" style="width: 43%;"></div></div>
+                  </div>
+                  <div>
+                    <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+                      <span style="font-size:0.85rem;">REM 睡眠</span>
+                      <span style="font-size:0.85rem;font-weight:600;">2.1h <span style="font-size:0.75rem;color:var(--color-primary);">正常</span></span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill green" style="width: 75%;"></div></div>
+                  </div>
+                  <div>
+                    <div style="display:flex;justify-content:space-between;margin-bottom:0.5rem;">
+                      <span style="font-size:0.85rem;">睡眠效率</span>
+                      <span style="font-size:0.85rem;font-weight:600;">88%</span>
+                    </div>
+                    <div class="progress-bar"><div class="progress-fill green" style="width: 88%;"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Monthly Summary -->
+          <section class="card">
+            <div class="card-header">
+              <h3>月度总结 · 2026年10月</h3>
+            </div>
+            <div class="card-body">
+              <div class="ai-message" style="margin-bottom:1.5rem;">
+                <div class="ai-avatar" style="width:48px;height:48px;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:26px;height:26px;"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/><path d="M16 2h6v6"/></svg>
+                </div>
+                <div class="ai-content">
+                  <h4>AI 月度总结</h4>
+                  <p>本月整体健康表现<strong style="color:var(--color-primary)">良好</strong>。运动习惯稳定，有氧和力量训练均按计划执行，体重稳步下降1.2kg。血压持续改善，已进入理想范围。主要待改善项：深睡时长偏低(1.3h)，建议执行睡眠改善计划。维生素D水平偏低，需加强补充。下月重点关注：提升深睡时长至1.5h以上，完成力量训练计划的渐进加重量目标。</p>
+                </div>
+              </div>
+              <div style="display:grid;grid-template-columns:repeat(3, 1fr);gap:1.25rem;">
+                <div style="text-align:center;padding:1.25rem;background:var(--color-primary-light);border-radius:var(--radius-md);">
+                  <div style="font-size:2rem;font-weight:700;color:var(--color-primary);">22</div>
+                  <div style="font-size:0.8rem;color:var(--color-muted-text);margin-top:0.25rem;">运动天数</div>
+                </div>
+                <div style="text-align:center;padding:1.25rem;background:var(--color-accent-light);border-radius:var(--radius-md);">
+                  <div style="font-size:2rem;font-weight:700;color:var(--color-accent);">98%</div>
+                  <div style="font-size:0.8rem;color:var(--color-muted-text);margin-top:0.25rem;">数据录入率</div>
+                </div>
+                <div style="text-align:center;padding:1.25rem;background:var(--color-warning-light);border-radius:var(--radius-md);">
+                  <div style="font-size:2rem;font-weight:700;color:#92400E;">4</div>
+                  <div style="font-size:0.8rem;color:var(--color-muted-text);margin-top:0.25rem;">健康目标达成</div>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <nav class="bottom-nav">
+      <ul class="bottom-nav-list">
+        <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>总览</a></li>
+        <li><a href="./health-data.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>数据</a></li>
+        <li><a href="./ai-analysis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/></svg>AI分析</a></li>
+        <li><a href="./health-plan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>计划</a></li>
+        <li><a href="./health-report.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>报告</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>

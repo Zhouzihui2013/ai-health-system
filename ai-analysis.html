@@ -1,0 +1,238 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>AI 健康分析 — AI 健康管理系统</title>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body data-page-id="ai-analysis">
+    <a class="skip-link" href="#main-content">跳转到主要内容</a>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span>AI 健康管理</span>
+        </div>
+        <nav>
+          <ul class="sidebar-nav">
+            <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>健康总览</a></li>
+            <li><a href="./health-data.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>健康数据</a></li>
+            <li><a href="./ai-analysis.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/><path d="M16 2h6v6"/></svg>AI 分析</a></li>
+            <li><a href="./health-plan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>健康计划</a></li>
+            <li><a href="./health-report.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>健康报告</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="main-wrapper">
+        <header class="top-header">
+          <div class="header-left">
+            <h1>AI 健康分析</h1>
+          </div>
+          <div class="header-search">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+            <input type="search" placeholder="搜索分析结果…" />
+          </div>
+          <div class="header-right">
+            <button class="header-icon-btn" aria-label="通知">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="notification-badge"></span>
+            </button>
+            <div class="user-avatar">李</div>
+          </div>
+        </header>
+
+        <main id="main-content" class="content-area" tabindex="-1">
+          <!-- AI Analysis Summary -->
+          <section class="card" style="margin-bottom:2rem;background:linear-gradient(135deg,#ECFDF5,#E0F2FE);border-color:transparent;">
+            <div class="card-body">
+              <div class="ai-message" style="background:rgba(255,255,255,0.8);">
+                <div class="ai-avatar" style="width:52px;height:52px;border-radius:16px;">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:28px;height:28px;"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/><path d="M16 2h6v6"/></svg>
+                </div>
+                <div class="ai-content">
+                  <h4 style="font-size:1rem;margin-bottom:0.75rem;">综合健康分析报告 · 更新于今天 14:00</h4>
+                  <p>基于您最近 30 天的健康数据分析，整体健康状态呈<strong style="color:var(--color-primary)">持续改善趋势</strong>。心肺功能评分提升 8%，体重管理进入稳定期。需要关注的是深睡时长持续偏低，以及维生素D摄入不足。以下是详细的风险评估和个性化建议。</p>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Risk Assessment -->
+          <section class="grid-2" style="margin-bottom:2rem;">
+            <div class="card">
+              <div class="card-header">
+                <h3>疾病风险评估</h3>
+                <span class="badge badge-green">整体低风险</span>
+              </div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:1.25rem;">
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+                    <span style="font-size:0.85rem;font-weight:500;">心血管疾病</span>
+                    <div class="risk-meter">
+                      <div class="risk-level">
+                        <span class="risk-dot active-green"></span>
+                        <span class="risk-dot active-green"></span>
+                        <span class="risk-dot"></span>
+                        <span class="risk-dot"></span>
+                        <span class="risk-dot"></span>
+                      </div>
+                      <span class="badge badge-green" style="font-size:0.7rem;">低</span>
+                    </div>
+                  </div>
+                  <div class="progress-bar"><div class="progress-fill green" style="width: 20%;"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+                    <span style="font-size:0.85rem;font-weight:500;">代谢综合征</span>
+                    <div class="risk-meter">
+                      <div class="risk-level">
+                        <span class="risk-dot active-green"></span>
+                        <span class="risk-dot active-green"></span>
+                        <span class="risk-dot"></span>
+                        <span class="risk-dot"></span>
+                        <span class="risk-dot"></span>
+                      </div>
+                      <span class="badge badge-green" style="font-size:0.7rem;">低</span>
+                    </div>
+                  </div>
+                  <div class="progress-bar"><div class="progress-fill green" style="width: 25%;"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+                    <span style="font-size:0.85rem;font-weight:500;">睡眠障碍</span>
+                    <div class="risk-meter">
+                      <div class="risk-level">
+                        <span class="risk-dot active-amber"></span>
+                        <span class="risk-dot active-amber"></span>
+                        <span class="risk-dot active-amber"></span>
+                        <span class="risk-dot"></span>
+                        <span class="risk-dot"></span>
+                      </div>
+                      <span class="badge badge-amber" style="font-size:0.7rem;">中</span>
+                    </div>
+                  </div>
+                  <div class="progress-bar"><div class="progress-fill amber" style="width: 55%;"></div></div>
+                </div>
+                <div>
+                  <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+                    <span style="font-size:0.85rem;font-weight:500;">焦虑/压力相关</span>
+                    <div class="risk-meter">
+                      <div class="risk-level">
+                        <span class="risk-dot active-green"></span>
+                        <span class="risk-dot active-green"></span>
+                        <span class="risk-dot"></span>
+                        <span class="risk-dot"></span>
+                        <span class="risk-dot"></span>
+                      </div>
+                      <span class="badge badge-green" style="font-size:0.7rem;">低</span>
+                    </div>
+                  </div>
+                  <div class="progress-bar"><div class="progress-fill green" style="width: 30%;"></div></div>
+                </div>
+              </div>
+            </div>
+
+            <div class="card">
+              <div class="card-header">
+                <h3>健康趋势洞察</h3>
+              </div>
+              <div class="card-body" style="display:flex;flex-direction:column;gap:1rem;">
+                <div style="display:flex;align-items:center;gap:1rem;padding:0.875rem;border-radius:var(--radius-md);background:var(--color-primary-light);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-primary)" stroke-width="2" style="width:24px;height:24px;flex-shrink:0;"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/><polyline points="17 6 23 6 23 12"/></svg>
+                  <div>
+                    <div style="font-size:0.85rem;font-weight:600;color:var(--color-primary-dark);">心肺功能持续上升</div>
+                    <div style="font-size:0.78rem;color:var(--color-muted-text);">VO₂Max 较上月提升 2.1 ml/kg/min</div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:1rem;padding:0.875rem;border-radius:var(--radius-md);background:var(--color-accent-light);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-accent)" stroke-width="2" style="width:24px;height:24px;flex-shrink:0;"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                  <div>
+                    <div style="font-size:0.85rem;font-weight:600;color:#0C4A6E;">体重趋于稳定</div>
+                    <div style="font-size:0.78rem;color:var(--color-muted-text);">近两周波动 ±0.3kg，BMI 22.4</div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:1rem;padding:0.875rem;border-radius:var(--radius-md);background:var(--color-warning-light);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="#92400E" stroke-width="2" style="width:24px;height:24px;flex-shrink:0;"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                  <div>
+                    <div style="font-size:0.85rem;font-weight:600;color:#92400E;">深睡时长偏低</div>
+                    <div style="font-size:0.78rem;color:var(--color-muted-text);">平均 1.3h/晚，建议 1.5-2h</div>
+                  </div>
+                </div>
+                <div style="display:flex;align-items:center;gap:1rem;padding:0.875rem;border-radius:var(--radius-md);background:var(--color-danger-light);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-danger)" stroke-width="2" style="width:24px;height:24px;flex-shrink:0;"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                  <div>
+                    <div style="font-size:0.85rem;font-weight:600;color:var(--color-danger);">维生素D不足</div>
+                    <div style="font-size:0.78rem;color:var(--color-muted-text);">血清25(OH)D 22ng/mL，建议补充</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- Personalized Recommendations -->
+          <section class="card">
+            <div class="card-header">
+              <h3>个性化健康建议</h3>
+              <div class="tab-group">
+                <button class="tab-btn active">运动</button>
+                <button class="tab-btn">饮食</button>
+                <button class="tab-btn">睡眠</button>
+                <button class="tab-btn">心理</button>
+              </div>
+            </div>
+            <div class="card-body" style="display:grid;grid-template-columns:repeat(2, 1fr);gap:1.25rem;">
+              <div class="ai-message">
+                <div class="ai-avatar">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"/></svg>
+                </div>
+                <div class="ai-content">
+                  <h4>增加间歇训练</h4>
+                  <p>您的有氧基础良好，建议每周加入1-2次 HIIT 训练（如 30秒冲刺+60秒慢跑×8组），可进一步提升 VO₂Max。</p>
+                </div>
+              </div>
+              <div class="ai-message">
+                <div class="ai-avatar" style="background:linear-gradient(135deg,var(--color-accent),#6366F1);">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+                </div>
+                <div class="ai-content">
+                  <h4>力量训练渐进加重</h4>
+                  <p>当前深蹲和硬拉重量稳定超过4周，建议下周增加5%负荷，配合充足蛋白质摄入(1.6g/kg)促进肌力增长。</p>
+                </div>
+              </div>
+              <div class="ai-message" style="background:linear-gradient(135deg,#E0F2FE,#EDE9FE);">
+                <div class="ai-avatar" style="background:linear-gradient(135deg,#6366F1,var(--color-accent));">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+                </div>
+                <div class="ai-content">
+                  <h4>优化睡前习惯</h4>
+                  <p>深睡不足可能与睡前屏幕使用有关。建议22:00后开启夜间模式，卧室温度保持20°C，尝试478呼吸法放松。</p>
+                </div>
+              </div>
+              <div class="ai-message" style="background:linear-gradient(135deg,#FEF3C7,#ECFDF5);">
+                <div class="ai-avatar" style="background:linear-gradient(135deg,var(--color-warning),var(--color-primary));">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2.69l5.66 5.66a8 8 0 1 1-11.31 0z"/></svg>
+                </div>
+                <div class="ai-content">
+                  <h4>补充维生素D</h4>
+                  <p>建议每日补充 1000-2000 IU 维生素D3，配合富含脂肪鱼的饮食（三文鱼、沙丁鱼），4-6周后复查血清水平。</p>
+                </div>
+              </div>
+            </div>
+          </section>
+        </main>
+      </div>
+    </div>
+
+    <nav class="bottom-nav">
+      <ul class="bottom-nav-list">
+        <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>总览</a></li>
+        <li><a href="./health-data.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>数据</a></li>
+        <li><a href="./ai-analysis.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/></svg>AI分析</a></li>
+        <li><a href="./health-plan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>计划</a></li>
+        <li><a href="./health-report.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>报告</a></li>
+      </ul>
+    </nav>
+  </body>
+</html>
