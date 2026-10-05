@@ -1,0 +1,297 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>主动健康管理 — AI 健康管理系统</title>
+    <link rel="stylesheet" href="./theme.css" />
+  </head>
+  <body data-page-id="proactive">
+    <a class="skip-link" href="#main-content">跳转到主要内容</a>
+    <div class="app-layout">
+      <aside class="sidebar">
+        <div class="sidebar-brand">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 12h-4l-3 9L9 3l-3 9H2"/></svg>
+          <span>AI 健康管理</span>
+        </div>
+        <nav>
+          <ul class="sidebar-nav">
+            <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>健康总览</a></li>
+            <li><a href="./health-data.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>健康数据</a></li>
+            <li><a href="./ai-analysis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/></svg>AI 分析</a></li>
+            <li><a href="./health-checkup.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="12" y1="18" x2="12" y2="12"/><line x1="9" y1="15" x2="15" y2="15"/></svg>体检解读</a></li>
+            <li><a href="./health-plan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>健康计划</a></li>
+            <li><a href="./proactive.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>主动健康</a></li>
+            <li><a href="./health-report.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg>健康报告</a></li>
+          </ul>
+        </nav>
+      </aside>
+
+      <div class="main-wrapper">
+        <header class="top-header">
+          <div class="header-left"><h1>主动健康管理</h1></div>
+          <div class="header-right">
+            <a href="./admin.html" class="btn btn-secondary" style="padding:0.3rem 0.75rem;font-size:0.75rem;">管理后台</a>
+            <button class="header-icon-btn" aria-label="通知">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg>
+              <span class="notification-badge"></span>
+            </button>
+            <div class="user-avatar">李</div>
+          </div>
+        </header>
+
+        <main id="main-content" class="content-area" tabindex="-1">
+
+          <!-- Live Monitoring Status -->
+          <section class="card" style="margin-bottom:2rem;background:linear-gradient(135deg,#ECFDF5,#E0F2FE);border-color:transparent;">
+            <div class="card-body" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
+              <div style="width:48px;height:48px;border-radius:50%;background:linear-gradient(135deg,var(--color-primary),#059669);display:flex;align-items:center;justify-content:center;flex-shrink:0;">
+                <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" style="width:24px;height:24px;"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              </div>
+              <div style="flex:1;min-width:200px;">
+                <div style="font-size:0.9rem;font-weight:700;">AI Agent 实时守护中</div>
+                <div style="font-size:0.78rem;color:var(--color-muted-text);">已连接 4 台智能设备 · 持续监测 12 项健康指标 · 上次预警 3 分钟前</div>
+              </div>
+              <div style="display:flex;align-items:center;gap:0.5rem;">
+                <div style="width:8px;height:8px;border-radius:50%;background:#10B981;animation:pulse 2s infinite;"></div>
+                <span style="font-size:0.78rem;font-weight:600;color:#10B981;">运行正常</span>
+              </div>
+            </div>
+          </section>
+
+          <!-- Real-time Metrics Grid -->
+          <section style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem;margin-bottom:2rem;">
+            <div class="card card-interactive" style="padding:1.25rem;border-top:3px solid var(--color-primary);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
+                <span style="font-size:0.8rem;color:var(--color-muted-text);">实时心率</span>
+                <span style="font-size:0.7rem;color:#10B981;font-weight:600;">手表同步</span>
+              </div>
+              <div style="font-size:2rem;font-weight:700;">72 <span style="font-size:0.9rem;color:var(--color-muted-text);font-weight:400;">bpm</span></div>
+              <div style="margin-top:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">正常范围 60-100</div>
+            </div>
+            <div class="card card-interactive" style="padding:1.25rem;border-top:3px solid var(--color-accent);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
+                <span style="font-size:0.8rem;color:var(--color-muted-text);">血氧饱和度</span>
+                <span style="font-size:0.7rem;color:#10B981;font-weight:600;">手表同步</span>
+              </div>
+              <div style="font-size:2rem;font-weight:700;">98 <span style="font-size:0.9rem;color:var(--color-muted-text);font-weight:400;">%</span></div>
+              <div style="margin-top:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">正常范围 95-100%</div>
+            </div>
+            <div class="card card-interactive" style="padding:1.25rem;border-top:3px solid var(--color-warning);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
+                <span style="font-size:0.8rem;color:var(--color-muted-text);">血压（今日均值）</span>
+                <span style="font-size:0.7rem;color:var(--color-warning);font-weight:600;">血压计</span>
+              </div>
+              <div style="font-size:2rem;font-weight:700;">138/88 <span style="font-size:0.9rem;color:var(--color-muted-text);font-weight:400;">mmHg</span></div>
+              <div style="margin-top:0.5rem;font-size:0.75rem;color:var(--color-danger);font-weight:500;">️ 偏高 · 近3日持续上升</div>
+            </div>
+            <div class="card card-interactive" style="padding:1.25rem;border-top:3px solid var(--color-danger);">
+              <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.75rem;">
+                <span style="font-size:0.8rem;color:var(--color-muted-text);">血糖（空腹）</span>
+                <span style="font-size:0.7rem;color:#10B981;font-weight:600;">血糖仪</span>
+              </div>
+              <div style="font-size:2rem;font-weight:700;">5.8 <span style="font-size:0.9rem;color:var(--color-muted-text);font-weight:400;">mmol/L</span></div>
+              <div style="margin-top:0.5rem;font-size:0.75rem;color:var(--color-muted-text);">正常范围 3.9-6.1</div>
+            </div>
+          </section>
+
+          <!-- Two Column: Alerts + Devices -->
+          <section class="grid-2">
+            <!-- AI Proactive Alerts -->
+            <div>
+              <div class="card">
+                <div class="card-header">
+                  <h3> AI 主动预警记录</h3>
+                  <span class="badge badge-red">3 条待关注</span>
+                </div>
+                <div class="card-body" style="display:flex;flex-direction:column;gap:1rem;">
+                  <div style="padding:1rem;border-radius:12px;background:linear-gradient(135deg,#FEF2F2,#FFF7ED);border-left:4px solid var(--color-danger);">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+                      <span style="font-size:0.82rem;font-weight:600;color:#DC2626;">🔴 血压异常预警</span>
+                      <span style="font-size:0.72rem;color:var(--color-muted-text);">3 分钟前</span>
+                    </div>
+                    <div style="font-size:0.8rem;color:var(--color-text);line-height:1.6;">近 3 天血压持续偏高（138/88 → 142/90 mmHg），超过正常范围。AI 已自动生成健康风险评估，建议尽快就医排查。</div>
+                    <div style="display:flex;gap:0.5rem;margin-top:0.75rem;">
+                      <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.72rem;" onclick="alert('AI 评估报告：高血压风险评估为中高风险，建议24小时动态血压监测，排除继发性高血压可能。')">查看 AI 评估</button>
+                      <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.72rem;" onclick="alert('已为您预约明日 14:00 心血管内科门诊')">预约就医</button>
+                    </div>
+                  </div>
+                  <div style="padding:1rem;border-radius:12px;background:linear-gradient(135deg,#FFF7ED,#FFFBEB);border-left:4px solid var(--color-warning);">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+                      <span style="font-size:0.82rem;font-weight:600;color:#D97706;">🟡 睡眠质量提醒</span>
+                      <span style="font-size:0.72rem;color:var(--color-muted-text);">今天 07:00</span>
+                    </div>
+                    <div style="font-size:0.8rem;color:var(--color-text);line-height:1.6;">昨晚深睡仅 1.2 小时（建议 2-3 小时），REM 睡眠偏短。AI 建议：今晚睡前 1 小时停止使用电子设备，卧室温度调至 20°C。</div>
+                    <div style="display:flex;gap:0.5rem;margin-top:0.75rem;">
+                      <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.72rem;" onclick="alert('已生成今日睡眠改善方案：1.睡前冥想10分钟 2.室温调至20°C 3.避免22:00后摄入咖啡因')">采纳建议</button>
+                    </div>
+                  </div>
+                  <div style="padding:1rem;border-radius:12px;background:linear-gradient(135deg,#EFF6FF,#F0FDF4);border-left:4px solid var(--color-accent);">
+                    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:0.5rem;">
+                      <span style="font-size:0.82rem;font-weight:600;color:#0284C7;">🔵 运动不足提醒</span>
+                      <span style="font-size:0.72rem;color:var(--color-muted-text);">今天 10:00</span>
+                    </div>
+                    <div style="font-size:0.8rem;color:var(--color-text);line-height:1.6;">本周有氧运动仅完成 2/5 次目标。AI 根据您的位置和日程，建议今天 18:00 在附近公园进行 30 分钟快走。</div>
+                    <div style="display:flex;gap:0.5rem;margin-top:0.75rem;">
+                      <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.72rem;" onclick="alert('✅ 已将运动计划添加到今日日程：18:00 快走 30 分钟')">加入日程</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Smart Device Management -->
+            <div>
+              <div class="card" style="margin-bottom:1.5rem;">
+                <div class="card-header">
+                  <h3> 智能设备管理</h3>
+                  <button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.72rem;" onclick="alert('设备配对中…请打开手机蓝牙，靠近设备')">+ 添加设备</button>
+                </div>
+                <div class="card-body" style="display:flex;flex-direction:column;gap:0.75rem;">
+                  <div style="display:flex;align-items:center;gap:1rem;padding:0.75rem;border-radius:12px;background:var(--color-primary-light);border:1px solid var(--color-primary);">
+                    <div style="width:40px;height:40px;border-radius:10px;background:var(--color-primary);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">⌚</div>
+                    <div style="flex:1;">
+                      <div style="font-size:0.85rem;font-weight:600;">智能手表</div>
+                      <div style="font-size:0.72rem;color:var(--color-muted-text);">心率 · 血氧 · 睡眠 · 运动 · 已同步</div>
+                    </div>
+                    <span class="badge badge-green" style="font-size:0.68rem;">在线</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:1rem;padding:0.75rem;border-radius:12px;background:var(--color-surface);border:1px solid var(--color-border);">
+                    <div style="width:40px;height:40px;border-radius:10px;background:var(--color-accent);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">🩺</div>
+                    <div style="flex:1;">
+                      <div style="font-size:0.85rem;font-weight:600;">智能血压计</div>
+                      <div style="font-size:0.72rem;color:var(--color-muted-text);">血压 · 心率 · 上次测量 10:30</div>
+                    </div>
+                    <span class="badge badge-green" style="font-size:0.68rem;">在线</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:1rem;padding:0.75rem;border-radius:12px;background:var(--color-surface);border:1px solid var(--color-border);">
+                    <div style="width:40px;height:40px;border-radius:10px;background:var(--color-warning);display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;">⚖️</div>
+                    <div style="flex:1;">
+                      <div style="font-size:0.85rem;font-weight:600;">智能体脂秤</div>
+                      <div style="font-size:0.72rem;color:var(--color-muted-text);">体重 · 体脂率 · BMI · 上次 07:10</div>
+                    </div>
+                    <span class="badge badge-green" style="font-size:0.68rem;">在线</span>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:1rem;padding:0.75rem;border-radius:12px;background:var(--color-surface);border:1px solid var(--color-border);">
+                    <div style="width:40px;height:40px;border-radius:10px;background:#8B5CF6;display:flex;align-items:center;justify-content:center;font-size:1.2rem;flex-shrink:0;"></div>
+                    <div style="flex:1;">
+                      <div style="font-size:0.85rem;font-weight:600;">连续血糖仪</div>
+                      <div style="font-size:0.72rem;color:var(--color-muted-text);">实时血糖 · 趋势箭头 · 已同步</div>
+                    </div>
+                    <span class="badge badge-green" style="font-size:0.68rem;">在线</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI Agent Actions -->
+              <div class="card">
+                <div class="card-header">
+                  <h3>🤖 AI Agent 自主行动</h3>
+                  <span class="badge badge-blue">自动执行</span>
+                </div>
+                <div class="card-body" style="display:flex;flex-direction:column;gap:0.75rem;">
+                  <div style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;border-radius:10px;background:var(--color-surface);">
+                    <div style="width:32px;height:32px;border-radius:8px;background:var(--color-primary-light);display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;"></div>
+                    <div style="flex:1;font-size:0.8rem;">
+                      <div style="font-weight:500;">每日 07:00 生成健康日报</div>
+                      <div style="font-size:0.72rem;color:var(--color-muted-text);">综合分析所有设备数据</div>
+                    </div>
+                    <label class="toggle-switch"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;border-radius:10px;background:var(--color-surface);">
+                    <div style="width:32px;height:32px;border-radius:8px;background:var(--color-warning-light);display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;">️</div>
+                    <div style="flex:1;font-size:0.8rem;">
+                      <div style="font-weight:500;">异常指标实时预警</div>
+                      <div style="font-size:0.72rem;color:var(--color-muted-text);">发现异常立即推送通知</div>
+                    </div>
+                    <label class="toggle-switch"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;border-radius:10px;background:var(--color-surface);">
+                    <div style="width:32px;height:32px;border-radius:8px;background:var(--color-accent-light);display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;">📋</div>
+                    <div style="flex:1;font-size:0.8rem;">
+                      <div style="font-weight:500;">每周自动生成健康周报</div>
+                      <div style="font-size:0.72rem;color:var(--color-muted-text);">趋势分析 + 改善建议</div>
+                    </div>
+                    <label class="toggle-switch"><input type="checkbox" checked /><span class="toggle-slider"></span></label>
+                  </div>
+                  <div style="display:flex;align-items:center;gap:0.75rem;padding:0.75rem;border-radius:10px;background:var(--color-surface);">
+                    <div style="width:32px;height:32px;border-radius:8px;background:var(--color-danger-light);display:flex;align-items:center;justify-content:center;font-size:0.9rem;flex-shrink:0;">🏥</div>
+                    <div style="flex:1;font-size:0.8rem;">
+                      <div style="font-weight:500;">高风险自动预约就医</div>
+                      <div style="font-size:0.72rem;color:var(--color-muted-text);">经用户确认后自动挂号</div>
+                    </div>
+                    <label class="toggle-switch"><input type="checkbox" /><span class="toggle-slider"></span></label>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!-- 24h Timeline -->
+          <section class="card" style="margin-top:2rem;">
+            <div class="card-header">
+              <h3>📈 24 小时健康趋势</h3>
+              <div class="tab-group">
+                <button class="tab-btn active">今日</button>
+                <button class="tab-btn">昨日</button>
+                <button class="tab-btn">近 7 天</button>
+              </div>
+            </div>
+            <div class="card-body">
+              <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.5rem;">
+                <div>
+                  <div style="font-size:0.8rem;font-weight:500;margin-bottom:0.75rem;">心率变化（bpm）</div>
+                  <div style="height:120px;background:linear-gradient(to right,var(--color-primary-light) 0%,var(--color-primary-light) 100%);border-radius:8px;position:relative;display:flex;align-items:flex-end;padding:0 0.5rem;">
+                    <div style="position:absolute;bottom:0;left:0;right:0;height:60%;background:linear-gradient(to top,rgba(16,185,129,0.3),transparent);border-radius:8px 8px 0 0;"></div>
+                    <div style="position:absolute;bottom:30%;left:10%;width:3px;height:20px;background:var(--color-primary);border-radius:2px;"></div>
+                    <div style="position:absolute;bottom:35%;left:25%;width:3px;height:25px;background:var(--color-primary);border-radius:2px;"></div>
+                    <div style="position:absolute;bottom:45%;left:40%;width:3px;height:35px;background:var(--color-warning);border-radius:2px;"></div>
+                    <div style="position:absolute;bottom:40%;left:55%;width:3px;height:30px;background:var(--color-primary);border-radius:2px;"></div>
+                    <div style="position:absolute;bottom:32%;left:70%;width:3px;height:22px;background:var(--color-primary);border-radius:2px;"></div>
+                    <div style="position:absolute;bottom:28%;left:85%;width:3px;height:18px;background:var(--color-primary);border-radius:2px;"></div>
+                  </div>
+                  <div style="display:flex;justify-content:space-between;font-size:0.65rem;color:var(--color-muted-text);margin-top:0.25rem;">
+                    <span>00:00</span><span>06:00</span><span>12:00</span><span>18:00</span><span>现在</span>
+                  </div>
+                </div>
+                <div>
+                  <div style="font-size:0.8rem;font-weight:500;margin-bottom:0.75rem;">血压趋势（mmHg）</div>
+                  <div style="height:120px;background:var(--color-surface);border-radius:8px;position:relative;">
+                    <div style="position:absolute;bottom:50%;left:0;right:0;border-top:1px dashed var(--color-border);"></div>
+                    <div style="position:absolute;bottom:50%;right:4px;font-size:0.6rem;color:var(--color-muted-text);">正常线 120/80</div>
+                    <svg viewBox="0 0 200 100" style="width:100%;height:100%;position:absolute;top:0;left:0;">
+                      <polyline points="10,55 35,50 60,45 85,40 110,35 135,30 160,25 185,20" fill="none" stroke="var(--color-danger)" stroke-width="2.5" stroke-linecap="round"/>
+                      <circle cx="185" cy="20" r="4" fill="var(--color-danger)"/>
+                    </svg>
+                  </div>
+                  <div style="font-size:0.72rem;color:var(--color-danger);margin-top:0.5rem;font-weight:500;">⚠️ 近 7 天血压持续偏高，AI 已触发预警</div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+        </main>
+      </div>
+    </div>
+
+    <!-- Bottom Nav -->
+    <nav class="bottom-nav">
+      <ul class="bottom-nav-list">
+        <li><a href="./index.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/></svg>总览</a></li>
+        <li><a href="./health-data.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>数据</a></li>
+        <li><a href="./ai-analysis.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2a10 10 0 1 0 10 10"/><path d="M12 12l7-7"/></svg>AI分析</a></li>
+        <li><a href="./health-checkup.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>体检</a></li>
+        <li><a href="./health-plan.html"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>计划</a></li>
+        <li><a href="./proactive.html" class="active"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>主动健康</a></li>
+      </ul>
+    </nav>
+
+    <script src="./app.js"></script>
+    <script>
+    // Pulse animation for live indicator
+    var style = document.createElement('style');
+    style.textContent = '@keyframes pulse{0%,100%{opacity:1}50%{opacity:0.5}}';
+    document.head.appendChild(style);
+    </script>
+  </body>
+</html>
