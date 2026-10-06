@@ -316,24 +316,118 @@
     </nav>
   <script src="./app.js"></script>
   <script>
-  // PDF Export using browser print
+  // Pure JS PDF Generator - creates real PDF file
+  function generatePDF() {
+    var today = new Date().toLocaleDateString('zh-CN');
+    var lines = [
+      {text: 'AI 健康管理系统 - 个人健康报告', size: 18, y: 750},
+      {text: '生成日期: ' + today, size: 10, y: 730},
+      {text: '', size: 10, y: 715},
+      {text: '===== 基本健康指标 =====', size: 12, y: 700},
+      {text: 'BMI 指数: 23.5 (正常范围 18.5-23.9)', size: 10, y: 680},
+      {text: '静息心率: 72 bpm (正常)', size: 10, y: 665},
+      {text: '平均血压: 120/78 mmHg (正常)', size: 10, y: 650},
+      {text: '血氧饱和度: 98% (正常)', size: 10, y: 635},
+      {text: '', size: 10, y: 615},
+      {text: '===== 运动数据 (30天) =====', size: 12, y: 600},
+      {text: '总步数: 360,000 步 | 日均: 12,000 步', size: 10, y: 580},
+      {text: '总消耗: 约 18,000 千卡', size: 10, y: 565},
+      {text: '运动天数: 26 天 | 达标率: 87%', size: 10, y: 550},
+      {text: '', size: 10, y: 530},
+      {text: '===== 睡眠质量 =====', size: 12, y: 515},
+      {text: '平均入睡: 23:15 | 平均起床: 07:00', size: 10, y: 495},
+      {text: '平均睡眠时长: 7.75 小时', size: 10, y: 480},
+      {text: '深睡占比: 22% | 睡眠评分: 82/100', size: 10, y: 465},
+      {text: '', size: 10, y: 445},
+      {text: '===== 血压趋势 =====', size: 12, y: 430},
+      {text: '第1周: 125/83 mmHg', size: 10, y: 410},
+      {text: '第2周: 122/80 mmHg', size: 10, y: 395},
+      {text: '第3周: 121/79 mmHg', size: 10, y: 380},
+      {text: '第4周: 120/78 mmHg (趋势改善)', size: 10, y: 365},
+      {text: '', size: 10, y: 345},
+      {text: '===== AI 健康评估 =====', size: 12, y: 330},
+      {text: '整体健康评分: 85/100', size: 10, y: 310},
+      {text: '主要优势: 运动习惯良好, 血压控制改善', size: 10, y: 295},
+      {text: '建议关注: 睡眠时间可进一步优化, 建议23:00前入睡', size: 10, y: 280},
+      {text: '风险提示: 未发现异常风险指标', size: 10, y: 265},
+      {text: '', size: 10, y: 245},
+      {text: '本报告由 AI 健康管理系统自动生成，仅供参考。', size: 9, y: 220},
+      {text: '如有健康疑虑，请咨询专业医疗机构。', size: 9, y: 205},
+    ];
+
+    // Build minimal PDF
+    var objects = [];
+    var objOffsets = [];
+    var content = '';
+
+    // Object 1: Catalog
+    objects.push('1 0 obj\n<< /Type /Catalog /Pages 2 0 R >>\nendobj\n');
+    // Object 2: Pages
+    objects.push('2 0 obj\n<< /Type /Pages /Kids [3 0 R] /Count 1 >>\nendobj\n');
+    // Object 3: Page
+    objects.push('3 0 obj\n<< /Type /Page /Parent 2 0 R /MediaBox [0 0 595 842] /Contents 4 0 R /Resources << /Font << /F1 5 0 R >> >> >>\nendobj\n');
+
+    // Build content stream
+    var stream = 'BT\n';
+    for (var i = 0; i < lines.length; i++) {
+      var l = lines[i];
+      var font = l.size > 14 ? '/F1 ' + l.size + ' Tf\n' : '/F1 ' + l.size + ' Tf\n';
+      // Escape special PDF chars
+      var escaped = l.text.replace(/\\/g, '\\\\').replace(/\(/g, '\\(').replace(/\)/g, '\\)');
+      stream += 'BT\n' + font + '1 0 0 1 60 ' + l.y + ' Tm\n(' + escaped + ') Tj\nET\n';
+    }
+    stream += 'ET\n';
+
+    // Object 4: Content stream
+    objects.push('4 0 obj\n<< /Length ' + stream.length + ' >>\nstream\n' + stream + 'endstream\nendobj\n');
+    // Object 5: Font
+    objects.push('5 0 obj\n<< /Type /Font /Subtype /Type1 /BaseFont /Helvetica >>\nendobj\n');
+
+    // Build PDF
+    var pdf = '%PDF-1.4\n';
+    for (var i = 0; i < objects.length; i++) {
+      objOffsets.push(pdf.length);
+      pdf += objects[i];
+    }
+
+    // Cross-reference table
+    var xrefOffset = pdf.length;
+    pdf += 'xref\n0 ' + (objects.length + 1) + '\n';
+    pdf += '0000000000 65535 f \n';
+    for (var i = 0; i < objOffsets.length; i++) {
+      pdf += String(objOffsets[i]).padStart(10, '0') + ' 00000 n \n';
+    }
+    pdf += 'trailer\n<< /Size ' + (objects.length + 1) + ' /Root 1 0 R >>\n';
+    pdf += 'startxref\n' + xrefOffset + '\n%%EOF';
+
+    // Download
+    var blob = new Blob([pdf], { type: 'application/pdf' });
+    var link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = '健康报告_' + new Date().toISOString().split('T')[0] + '.pdf';
+    link.click();
+    URL.revokeObjectURL(link.href);
+  }
+
+  // Attach to export button
   document.querySelectorAll('.btn').forEach(function(btn) {
     if (btn.textContent.trim().includes('导出 PDF')) {
       btn.addEventListener('click', function(e) {
         e.preventDefault();
+        var origHTML = btn.innerHTML;
+        btn.innerHTML = '生成中…';
         btn.disabled = true;
-        btn.textContent = '准备中…';
-        // Add print-specific styles
-        var printStyle = document.createElement('style');
-        printStyle.id = 'print-style';
-        printStyle.textContent = '@media print{.sidebar,.top-header,.bottom-nav,.skip-link,.tab-group,.header-right button,.btn-secondary{display:none!important}.main-wrapper{margin-left:0!important}.content-area{padding:1rem!important}body{background:#fff!important}.card{break-inside:avoid;box-shadow:none!important;border:1px solid #e2e8f0!important}}';
-        document.head.appendChild(printStyle);
         setTimeout(function() {
-          window.print();
-          document.getElementById('print-style').remove();
-          btn.disabled = false;
-          btn.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg> 导出 PDF';
-        }, 300);
+          try {
+            generatePDF();
+            btn.innerHTML = '已下载';
+            setTimeout(function() { btn.innerHTML = origHTML; btn.disabled = false; }, 1500);
+          } catch(err) {
+            btn.innerHTML = origHTML;
+            btn.disabled = false;
+            alert('导出失败: ' + err.message);
+          }
+        }, 200);
       });
     }
   });
