@@ -536,9 +536,15 @@ ${data}
     // Simple markdown-like formatter
     function formatMarkdown(text) {
       return text
-        .replace(/^## (.+)$/gm, '<h3 style="font-size:1rem;font-weight:700;margin:1rem 0 0.5rem;color:var(--color-text);">$1</h3>')
+        .replace(/^### (.+)$/gm, '<div style="font-weight:700;font-size:0.95rem;margin:0.75rem 0 0.3rem;color:var(--color-text);">$1</div>')
+        .replace(/^## (.+)$/gm, '<div style="font-size:1.05rem;font-weight:700;margin:1rem 0 0.5rem;color:var(--color-primary-dark);">$1</div>')
+        .replace(/^# (.+)$/gm, '<div style="font-size:1.1rem;font-weight:700;margin:1rem 0 0.5rem;color:var(--color-primary-dark);">$1</div>')
+        .replace(/\*\*\*(.+?)\*\*\*/g, '<strong style="color:var(--color-primary-dark);">$1</strong>')
         .replace(/\*\*(.+?)\*\*/g, '<strong style="color:var(--color-primary-dark);">$1</strong>')
+        .replace(/(?<!\*)\*([^*]+?)\*(?!\*)/g, '<em>$1</em>')
+        .replace(/`(.+?)`/g, '<code style="background:var(--color-surface-secondary);padding:0.1rem 0.3rem;border-radius:3px;font-size:0.85em;">$1</code>')
         .replace(/^- (.+)$/gm, '<div style="padding-left:1rem;margin:0.25rem 0;">• $1</div>')
+        .replace(/^\d+\. (.+)$/gm, '<div style="padding-left:1rem;margin:0.25rem 0;">$1</div>')
         .replace(/\n/g, '<br>');
     }
     </script>
