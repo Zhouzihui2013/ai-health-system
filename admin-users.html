@@ -28,19 +28,22 @@
         </header>
 
         <main id="main-content" class="content-area" tabindex="-1">
+          <!-- Toolbar -->
           <section class="card" style="margin-bottom:1.5rem;">
             <div class="card-body" style="display:flex;align-items:center;gap:1rem;flex-wrap:wrap;">
-              <div class="header-search" style="flex:1;min-width:200px;">
+              <div class="header-search" style="flex:1;min-width:180px;">
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="width:16px;height:16px;"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
-                <input type="search" id="user-search" placeholder="搜索用户名或手机号…" style="padding:0.4rem 0.75rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.82rem;width:100%;outline:none;" />
+                <input type="search" id="user-search" placeholder="搜索用户名或手机号…" />
               </div>
               <select id="status-filter" style="padding:0.4rem 0.6rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.82rem;">
                 <option value="all">全部状态</option><option value="active">正常</option><option value="banned">已封禁</option>
               </select>
-              <button class="btn btn-secondary" id="export-users-btn" style="padding:0.4rem 0.8rem;font-size:0.8rem;"> 导出用户</button>
+              <button class="btn btn-primary" id="add-user-btn" style="padding:0.4rem 0.8rem;font-size:0.8rem;">＋ 新增用户</button>
+              <button class="btn btn-secondary" id="export-users-btn" style="padding:0.4rem 0.8rem;font-size:0.8rem;"> 导出</button>
             </div>
           </section>
 
+          <!-- User Table -->
           <section class="card">
             <div class="card-header"><h3>用户列表</h3><span id="user-count" class="badge badge-blue"></span></div>
             <div style="overflow-x:auto;">
@@ -58,69 +61,73 @@
       </div>
     </div>
 
-    <!-- User Detail Modal -->
+    <!-- User Detail / Edit / Add Modal -->
     <div id="user-modal" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.5);z-index:9999;justify-content:center;align-items:center;">
-      <div style="background:#fff;border-radius:16px;padding:2rem;width:90%;max-width:550px;max-height:90vh;overflow-y:auto;">
+      <div style="background:#fff;border-radius:16px;padding:2rem;width:90%;max-width:560px;max-height:90vh;overflow-y:auto;position:relative;">
         <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem;">
-          <h3 style="margin:0;">用户详情</h3>
-          <button onclick="document.getElementById('user-modal').style.display='none'" style="background:none;border:none;font-size:1.5rem;cursor:pointer;"></button>
+          <h3 id="modal-title" style="margin:0;">用户详情</h3>
+          <button id="modal-close-btn" onclick="closeModal()" style="background:none;border:none;font-size:1.6rem;cursor:pointer;color:var(--color-muted-text);line-height:1;">&times;</button>
         </div>
-        <div id="user-detail-content"></div>
+        <div id="modal-body"></div>
       </div>
     </div>
 
     <script src="./data-store.js"></script>
     <script>
-    const USERS_PER_PAGE = 10;
-    let userPage = 1;
-    let filteredUsers = [];
+    const PER_PAGE = 10;
+    let curPage = 1;
+    let filtered = [];
 
     function init() {
-      const users = DataStore.loadUsers();
-      filteredUsers = [...users];
-      document.getElementById('user-count').textContent = filteredUsers.length + ' 人';
-      renderUsers();
+      filtered = [...DataStore.loadUsers()];
+      document.getElementById('user-count').textContent = filtered.length + ' 人';
+      render();
     }
 
-    function renderUsers() {
-      const total = filteredUsers.length;
-      const totalPages = Math.ceil(total / USERS_PER_PAGE);
-      if (userPage > totalPages) userPage = totalPages || 1;
-      const start = (userPage - 1) * USERS_PER_PAGE;
-      const pageUsers = filteredUsers.slice(start, start + USERS_PER_PAGE);
+    function render() {
+      const total = filtered.length;
+      const pages = Math.ceil(total / PER_PAGE) || 1;
+      if (curPage > pages) curPage = pages;
+      const start = (curPage - 1) * PER_PAGE;
+      const slice = filtered.slice(start, start + PER_PAGE);
 
-      document.getElementById('user-tbody').innerHTML = pageUsers.map(u => `
+      document.getElementById('user-tbody').innerHTML = slice.map(u => `
         <tr>
-          <td style="font-size:0.825rem;">${u.id}</td>
-          <td style="font-size:0.825rem;font-weight:500;">${u.name}</td>
-          <td style="font-size:0.825rem;">${u.phone}</td>
-          <td style="font-size:0.825rem;">${u.age}</td>
-          <td style="font-size:0.825rem;">${u.gender}</td>
+          <td style="font-size:0.82rem;">${u.id}</td>
+          <td style="font-size:0.82rem;font-weight:600;">${u.name}</td>
+          <td style="font-size:0.82rem;">${u.phone}</td>
+          <td style="font-size:0.82rem;">${u.age}</td>
+          <td style="font-size:0.82rem;">${u.gender}</td>
           <td><span class="badge ${u.score>=80?'badge-green':u.score>=60?'badge-amber':'badge-red'}">${u.score}</span></td>
-          <td>${u.vip?'<span class="badge badge-amber">VIP</span>':'-'}</td>
+          <td>${u.vip?'<span class="badge badge-amber">VIP</span>':'—'}</td>
           <td>${u.status==='active'?'<span class="badge badge-green">正常</span>':'<span class="badge badge-red">封禁</span>'}</td>
-          <td style="font-size:0.825rem;">${u.joined}</td>
-          <td><button class="btn btn-secondary" style="padding:0.25rem 0.6rem;font-size:0.72rem;" onclick="viewUser(${u.id})">查看</button></td>
+          <td style="font-size:0.82rem;">${u.joined}</td>
+          <td style="white-space:nowrap;">
+            <button class="btn btn-secondary" style="padding:0.2rem 0.5rem;font-size:0.7rem;" onclick="viewUser(${u.id})">查看</button>
+            <button class="btn btn-secondary" style="padding:0.2rem 0.5rem;font-size:0.7rem;" onclick="editUser(${u.id})">编辑</button>
+            <button class="btn" style="padding:0.2rem 0.5rem;font-size:0.7rem;color:var(--color-danger);border:1px solid var(--color-danger);" onclick="deleteUser(${u.id})">删除</button>
+          </td>
         </tr>`).join('');
 
-      document.getElementById('user-page-info').textContent = `第 ${userPage} 页 / 共 ${totalPages} 页（${total} 人）`;
-      let pg = `<button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.75rem;" ${userPage<=1?'disabled':''} onclick="goUserPage(${userPage-1})">上一页</button>`;
-      for (let i = 1; i <= totalPages; i++) {
-        pg += `<button class="btn ${i===userPage?'btn-primary':'btn-secondary'}" style="padding:0.3rem 0.5rem;font-size:0.75rem;min-width:2rem;" onclick="goUserPage(${i})">${i}</button>`;
+      document.getElementById('user-page-info').textContent = `第 ${curPage} 页 / 共 ${pages} 页（${total} 人）`;
+      let pg = `<button class="btn btn-secondary" style="padding:0.25rem 0.55rem;font-size:0.75rem;" ${curPage<=1?'disabled':''} onclick="goPage(${curPage-1})">上一页</button>`;
+      for (let i = Math.max(1,curPage-2); i <= Math.min(pages,curPage+2); i++) {
+        pg += `<button class="btn ${i===curPage?'btn-primary':'btn-secondary'}" style="padding:0.25rem 0.45rem;font-size:0.75rem;min-width:1.8rem;" onclick="goPage(${i})">${i}</button>`;
       }
-      pg += `<button class="btn btn-secondary" style="padding:0.3rem 0.6rem;font-size:0.75rem;" ${userPage>=totalPages?'disabled':''} onclick="goUserPage(${userPage+1})">下一页</button>`;
+      pg += `<button class="btn btn-secondary" style="padding:0.25rem 0.55rem;font-size:0.75rem;" ${curPage>=pages?'disabled':''} onclick="goPage(${curPage+1})">下一页</button>`;
       document.getElementById('user-pagination').innerHTML = pg;
     }
 
-    window.goUserPage = function(p) { userPage = p; renderUsers(); };
+    function goPage(p) { curPage = p; render(); }
+    function openModal() { document.getElementById('user-modal').style.display = 'flex'; }
+    function closeModal() { document.getElementById('user-modal').style.display = 'none'; }
 
+    // ===== View User =====
     window.viewUser = function(id) {
-      const users = DataStore.loadUsers();
-      const u = users.find(x => x.id === id);
+      const u = DataStore.loadUsers().find(x => x.id === id);
       if (!u) return;
-      const allData = DataStore.load();
-      const userData = allData.filter(r => true); // all data belongs to current user
-      document.getElementById('user-detail-content').innerHTML = `
+      document.getElementById('modal-title').textContent = '用户详情';
+      document.getElementById('modal-body').innerHTML = `
         <div style="display:flex;align-items:center;gap:1rem;margin-bottom:1.5rem;">
           <div style="width:56px;height:56px;border-radius:50%;background:var(--color-primary);display:flex;align-items:center;justify-content:center;color:#fff;font-size:1.3rem;font-weight:600;">${u.name[0]}</div>
           <div>
@@ -144,62 +151,183 @@
           </div>
           <div style="padding:1rem;background:var(--color-surface);border-radius:12px;">
             <div style="font-size:0.75rem;color:var(--color-muted-text);margin-bottom:0.25rem;">账号状态</div>
-            <div style="font-size:1rem;font-weight:600;">${u.status==='active'?'✅ 正常':' 封禁'}</div>
+            <div style="font-size:1rem;font-weight:600;">${u.status==='active'?'✅ 正常':'⛔ 封禁'}</div>
           </div>
         </div>
         <div style="display:flex;gap:0.75rem;">
-          <button class="btn btn-secondary" style="flex:1;justify-content:center;padding:0.6rem;" onclick="alert('已发送消息给 ${u.name}')">发送消息</button>
+          <button class="btn btn-secondary" style="flex:1;justify-content:center;padding:0.6rem;" onclick="editUser(${u.id})">编辑用户</button>
           <button class="btn ${u.status==='active'?'btn-danger':'btn-primary'}" style="flex:1;justify-content:center;padding:0.6rem;" onclick="toggleBan(${u.id})">${u.status==='active'?'封禁账号':'解封账号'}</button>
         </div>`;
-      document.getElementById('user-modal').style.display = 'flex';
+      openModal();
     };
 
     window.toggleBan = function(id) {
       const users = DataStore.loadUsers();
       const u = users.find(x => x.id === id);
-      if (u) { u.status = u.status === 'active' ? 'banned' : 'active'; localStorage.setItem(DataStore.USERS_KEY, JSON.stringify(users)); }
-      document.getElementById('user-modal').style.display = 'none';
+      if (u) { u.status = u.status === 'active' ? 'banned' : 'active'; DataStore.saveUsers(users); }
+      closeModal();
       init();
     };
 
-    // Search
+    // ===== Add User =====
+    function showAddForm() {
+      document.getElementById('modal-title').textContent = '新增用户';
+      document.getElementById('modal-body').innerHTML = `
+        <form class="user-form" style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">姓名</label><input class="uf-name" required style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;" /></div>
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">手机号</label><input class="uf-phone" required style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;" /></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;">
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">年龄</label><input class="uf-age" type="number" min="1" max="120" style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;" /></div>
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">性别</label><select class="uf-gender" style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;"><option>男</option><option>女</option></select></div>
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">健康评分</label><input class="uf-score" type="number" min="0" max="100" value="75" style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;" /></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">VIP</label><select class="uf-vip" style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;"><option value="false">否</option><option value="true">是</option></select></div>
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">状态</label><select class="uf-status" style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;"><option value="active">正常</option><option value="banned">封禁</option></select></div>
+          </div>
+          <div style="display:flex;gap:0.75rem;margin-top:0.5rem;">
+            <button type="button" class="btn btn-secondary" style="flex:1;justify-content:center;padding:0.6rem;" onclick="closeModal()">取消</button>
+            <button type="submit" class="btn btn-primary" style="flex:1;justify-content:center;padding:0.6rem;">确认添加</button>
+          </div>
+        </form>`;
+      document.querySelector('.user-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        DataStore.addUser({
+          name: document.querySelector('.uf-name').value.trim(),
+          phone: document.querySelector('.uf-phone').value.trim(),
+          age: parseInt(document.querySelector('.uf-age').value) || 30,
+          gender: document.querySelector('.uf-gender').value,
+          score: parseInt(document.querySelector('.uf-score').value) || 75,
+          vip: document.querySelector('.uf-vip').value === 'true',
+          status: document.querySelector('.uf-status').value,
+          joined: new Date().toISOString().split('T')[0],
+          records: 0
+        });
+        closeModal();
+        init();
+      });
+      openModal();
+    }
+
+    // ===== Edit User =====
+    window.editUser = function(id) {
+      const u = DataStore.loadUsers().find(x => x.id === id);
+      if (!u) return;
+      document.getElementById('modal-title').textContent = '编辑用户';
+      document.getElementById('modal-body').innerHTML = `
+        <form class="user-form" style="display:flex;flex-direction:column;gap:1rem;">
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">姓名</label><input class="uf-name" value="${u.name}" required style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;" /></div>
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">手机号</label><input class="uf-phone" value="${u.phone}" required style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;" /></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr 1fr;gap:1rem;">
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">年龄</label><input class="uf-age" type="number" value="${u.age}" style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;" /></div>
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">性别</label><select class="uf-gender" style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;"><option ${u.gender==='男'?'selected':''}>男</option><option ${u.gender==='女'?'selected':''}>女</option></select></div>
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">健康评分</label><input class="uf-score" type="number" value="${u.score}" style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;" /></div>
+          </div>
+          <div style="display:grid;grid-template-columns:1fr 1fr;gap:1rem;">
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">VIP</label><select class="uf-vip" style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;"><option value="false" ${!u.vip?'selected':''}>否</option><option value="true" ${u.vip?'selected':''}>是</option></select></div>
+            <div><label style="font-size:0.8rem;font-weight:600;display:block;margin-bottom:0.3rem;">状态</label><select class="uf-status" style="width:100%;padding:0.5rem;border:1px solid var(--color-border);border-radius:8px;font-size:0.85rem;"><option value="active" ${u.status==='active'?'selected':''}>正常</option><option value="banned" ${u.status==='banned'?'selected':''}>封禁</option></select></div>
+          </div>
+          <div style="display:flex;gap:0.75rem;margin-top:0.5rem;">
+            <button type="button" class="btn btn-secondary" style="flex:1;justify-content:center;padding:0.6rem;" onclick="closeModal()">取消</button>
+            <button type="submit" class="btn btn-primary" style="flex:1;justify-content:center;padding:0.6rem;">保存修改</button>
+          </div>
+        </form>`;
+      document.querySelector('.user-form').addEventListener('submit', function(e) {
+        e.preventDefault();
+        DataStore.updateUser(id, {
+          name: document.querySelector('.uf-name').value.trim(),
+          phone: document.querySelector('.uf-phone').value.trim(),
+          age: parseInt(document.querySelector('.uf-age').value) || u.age,
+          gender: document.querySelector('.uf-gender').value,
+          score: parseInt(document.querySelector('.uf-score').value) || u.score,
+          vip: document.querySelector('.uf-vip').value === 'true',
+          status: document.querySelector('.uf-status').value
+        });
+        closeModal();
+        init();
+      });
+      openModal();
+    };
+
+    // ===== Delete User =====
+    window.deleteUser = function(id) {
+      const u = DataStore.loadUsers().find(x => x.id === id);
+      if (!u) return;
+      document.getElementById('modal-title').textContent = '确认删除';
+      document.getElementById('modal-body').innerHTML = `
+        <div style="text-align:center;padding:1.5rem 0;">
+          <div style="width:48px;height:48px;border-radius:50%;background:rgba(239,68,68,0.1);display:inline-flex;align-items:center;justify-content:center;margin-bottom:1rem;">
+            <svg viewBox="0 0 24 24" fill="none" stroke="var(--color-danger)" stroke-width="2" style="width:24px;height:24px;"><path d="M3 6h18"/><path d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"/></svg>
+          </div>
+          <p style="font-size:1rem;font-weight:600;margin-bottom:0.5rem;">确定要删除用户「${u.name}」吗？</p>
+          <p style="font-size:0.85rem;color:var(--color-muted-text);">此操作不可撤销</p>
+        </div>
+        <div style="display:flex;gap:0.75rem;">
+          <button class="btn btn-secondary" style="flex:1;justify-content:center;padding:0.6rem;" onclick="closeModal()">取消</button>
+          <button class="btn btn-danger" style="flex:1;justify-content:center;padding:0.6rem;" onclick="confirmDelete(${u.id})">确认删除</button>
+        </div>`;
+      openModal();
+    };
+
+    window.confirmDelete = function(id) {
+      DataStore.deleteUser(id);
+      closeModal();
+      init();
+    };
+
+    // ===== Search =====
     document.getElementById('user-search').addEventListener('input', function() {
       const q = this.value.toLowerCase();
-      const users = DataStore.loadUsers();
-      filteredUsers = users.filter(u => u.name.toLowerCase().includes(q) || u.phone.includes(q));
-      userPage = 1;
-      document.getElementById('user-count').textContent = filteredUsers.length + ' 人';
-      renderUsers();
-    });
-
-    // Status filter
-    document.getElementById('status-filter').addEventListener('change', function() {
-      const users = DataStore.loadUsers();
-      const q = document.getElementById('user-search').value.toLowerCase();
-      filteredUsers = users.filter(u => {
-        const matchSearch = u.name.toLowerCase().includes(q) || u.phone.includes(q);
-        const matchStatus = this.value === 'all' || u.status === this.value;
-        return matchSearch && matchStatus;
+      const sv = document.getElementById('status-filter').value;
+      filtered = DataStore.loadUsers().filter(u => {
+        const ms = u.name.toLowerCase().includes(q) || u.phone.includes(q);
+        const mst = sv === 'all' || u.status === sv;
+        return ms && mst;
       });
-      userPage = 1;
-      document.getElementById('user-count').textContent = filteredUsers.length + ' 人';
-      renderUsers();
+      curPage = 1;
+      document.getElementById('user-count').textContent = filtered.length + ' 人';
+      render();
     });
 
-    // Export
+    document.getElementById('status-filter').addEventListener('change', function() {
+      const q = document.getElementById('user-search').value.toLowerCase();
+      filtered = DataStore.loadUsers().filter(u => {
+        const ms = u.name.toLowerCase().includes(q) || u.phone.includes(q);
+        const mst = this.value === 'all' || u.status === this.value;
+        return ms && mst;
+      });
+      curPage = 1;
+      document.getElementById('user-count').textContent = filtered.length + ' 人';
+      render();
+    });
+
+    // ===== Export =====
     document.getElementById('export-users-btn').addEventListener('click', function() {
       let csv = '\uFEFFID,姓名,手机号,年龄,性别,健康评分,VIP,状态,注册日期,记录数\n';
-      filteredUsers.forEach(u => {
+      filtered.forEach(u => {
         csv += `${u.id},${u.name},${u.phone},${u.age},${u.gender},${u.score},${u.vip?'是':'否'},${u.status==='active'?'正常':'封禁'},${u.joined},${u.records}\n`;
       });
       const blob = new Blob([csv], { type: 'text/csv;charset=utf-8;' });
       const link = document.createElement('a');
       link.href = URL.createObjectURL(blob);
-      link.download = `用户数据_${new Date().toISOString().split('T')[0]}.csv`;
+      link.download = '用户数据_' + new Date().toISOString().split('T')[0] + '.csv';
       link.click();
       URL.revokeObjectURL(link.href);
     });
 
+    // ===== Add User Button =====
+    document.getElementById('add-user-btn').addEventListener('click', showAddForm);
+
+    // Close modal on backdrop click
+    document.getElementById('user-modal').addEventListener('click', function(e) {
+      if (e.target === this) closeModal();
+    });
+
+    // Init
     init();
     </script>
   </body>
